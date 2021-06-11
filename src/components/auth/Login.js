@@ -29,6 +29,10 @@ export const Login = props => {
             })
     }
 
+    const handleCancel = () => {
+        email.current.value = ""
+    }
+
     return (
         <main className="container--login">
             <dialog className="dialog dialog--auth" ref={existDialog}>
@@ -49,9 +53,8 @@ export const Login = props => {
                             required autoFocus />
                     </fieldset>
                     <fieldset>
-                        <button type="submit">
-                            Sign in
-                        </button>
+                        <button type="submit">Sign in</button>
+                        <button type="cancel" onClick={() => handleCancel()}> Cancel </button>
                     </fieldset>
                 </form>
             </section>
