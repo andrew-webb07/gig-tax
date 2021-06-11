@@ -3,6 +3,7 @@ import { Route } from "react-router-dom"
 import { LandingPage } from "./landingPage/LandingPage"
 import { ReceiptForm } from "./receipt/ReceiptForm"
 import { ReceiptProvider } from "./receipt/ReceiptProvider"
+import { ReceiptList } from "./receipt/ReceiptList"
 
 export const ApplicationViews = () => {
     return (
@@ -13,6 +14,10 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/receipt/create">
                 <ReceiptForm/>
+            </Route>
+
+            <Route exact path="/entries">
+                <ReceiptList />
             </Route>
         </ReceiptProvider>
     </>
