@@ -18,8 +18,8 @@ export const ReceiptForm = () => {
       }
 
     const handleSaveReceipt = () => {
-        if (receipt.businessName === "" || receipt.businessAddress === "" || receipt.description === "" || receipt.date === "" || receipt.price === "") {
-            window.alert("Please fill out the form")
+        if (receipt.businessName === undefined || receipt.businessAddress === undefined || receipt.businessCity === undefined || receipt.businessState === undefined || receipt.businessZipcode === undefined || receipt.description === undefined || receipt.date === undefined || receipt.price === undefined || receipt.receiptNumber === undefined) {
+            window.alert("Please fill out the form completely")
         } else {
             setIsLoading(true)
             if(receiptId) {
@@ -65,9 +65,9 @@ export const ReceiptForm = () => {
             <div className="form-group">
               <label htmlFor="businessName">Business Name: </label>
               <input type="text" id="businessName" name="name" required autoFocus className="form-control"
-              placeholder="Business Name"
+              placeholder="Business Name" value={receipt.businessName}
               onChange={handleControlledInputChange}
-              value={receipt.businessName}/>
+              />
             </div>
           </fieldset>
           <fieldset>
@@ -137,7 +137,7 @@ export const ReceiptForm = () => {
             <div className="form-group">
               <label htmlFor="receiptNumber">Receipt Number: </label>
               <input type="text" id="receiptNumber" name="receiptNumber" autoFocus className="form-control"
-              placeholder="Receipt Number"
+              placeholder="Enter Receipt Number or enter 'NA'"
               onChange={handleControlledInputChange}
               value={receipt.receiptNumber}/>
             </div>
