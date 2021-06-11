@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { ApplicationViews } from "./ApplicationViews";
-// import { NavBar } from "./nav/NavBar";
+import { NavBar } from "./nav/NavBar";
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
 import "./GigTax.css";
@@ -13,7 +13,7 @@ export const GigTax = () => (
         if (localStorage.getItem("gig-tax_user")) {
           return (
             <>
-              {/* <NavBar /> */}
+              <NavBar />
               <h1>Gig Tax</h1>    
               {/* <ApplicationViews /> */}
             </>
