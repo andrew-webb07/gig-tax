@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom"
 import "./Login.css"
 
 export const Register = (props) => {
+
     const email = useRef()
     const address = useRef()
     const city = useRef()
@@ -16,6 +17,10 @@ export const Register = (props) => {
         return fetch(`http://localhost:8088/users?email=${email.current.value}`)
             .then(res => res.json())
             .then(user => !!user.length)
+    }
+
+    const handleCancel = () => {
+        history.push(`/login`)
     }
 
     const handleRegister = (e) => {
@@ -81,6 +86,8 @@ export const Register = (props) => {
                 </fieldset>
                 <fieldset>
                     <button type="submit"> Sign in </button>
+                    <button type="cancel"
+                    onClick={() => {handleCancel()}}> Cancel </button>
                 </fieldset>
             </form>
         </main>
