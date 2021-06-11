@@ -4,31 +4,35 @@ import { ApplicationViews } from "./ApplicationViews";
 import { NavBar } from "./nav/NavBar";
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
+import { useHistory } from "react-router-dom"
 import "./GigTax.css";
 
-export const GigTax = () => (
-    <>
-    <Route
-      render={() => {
-        if (localStorage.getItem("gig-tax_user")) {
-          return (
-            <>
-              <NavBar />
-              <h1>Gig Tax</h1>    
-              {/* <ApplicationViews /> */}
-            </>
-          );
-        } else {
-          return <Redirect to="/login" />;
-        }
-      }}
-    />
+export const GigTax = () => {
+    const history = useHistory()
 
-    <Route path="/login">
-      <Login />
-    </Route>
-    <Route path="/register">
-      <Register />
-    </Route>
-  </>
-)
+return (
+        <>
+        <Route
+        render={() => {
+            if (localStorage.getItem("gig-tax_user")) {
+            return (
+                <>
+                <NavBar />   
+                <ApplicationViews />
+                </>
+            );
+            } else {
+            return <Redirect to="/login" />;
+            }
+        }}
+        />
+
+        <Route path="/login">
+        <Login />
+        </Route>
+        <Route path="/register">
+        <Register />
+        </Route>
+    </>
+    )
+}
