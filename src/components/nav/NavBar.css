@@ -1,0 +1,23 @@
+.navbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: left;
+}
+
+.navbar__item {
+    flex-basis: 80%;
+    list-style-type: none;
+    padding: .4em;
+    text-align: center;
+    background-color: rgb(78, 78, 78);
+    box-shadow: black .2em .2em .2em;
+}
+
+.navbar__link {
+    color: white
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
