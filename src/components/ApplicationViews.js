@@ -7,32 +7,45 @@ import { ReceiptList } from "./receipt/ReceiptList"
 import { GigForm } from "./gig/GigForm"
 import { GigProvider } from "./gig/GigProvider"
 import { GigList } from "./gig/GigList"
+import { TourForm } from "./tour/TourForm"
+import { TourProvider } from "./tour/TourProvider"
 
 export const ApplicationViews = () => {
     return (
     <>
         <ReceiptProvider>
             <GigProvider>
-                <Route exact path="/">
-                    <LandingPage />
-                </Route>
-                <Route exact path="/gig/create">
-                    <GigForm/>
-                </Route>
-                <Route exact path="/gig/edit/:gigId(\d+)">
-                    <GigForm/>
-                </Route>
-                <Route exact path="/receipt/create">
-                    <ReceiptForm/>
-                </Route>
-                <Route exact path="/receipt/edit/:receiptId(\d+)">
-                    <ReceiptForm/>
-                </Route>
+                <TourProvider>
+                    <Route exact path="/">
+                        <LandingPage />
+                    </Route>
+                    
+                    <Route exact path="/gig/create">
+                        <GigForm/>
+                    </Route>
+                    <Route exact path="/gig/edit/:gigId(\d+)">
+                        <GigForm/>
+                    </Route>
 
-                <Route exact path="/entries">
-                    <GigList />
-                    <ReceiptList />
-                </Route>
+                    <Route exact path="/tour/create">
+                        <TourForm/>
+                    </Route>
+                    <Route exact path="/tour/edit/:tourId(\d+)">
+                        <TourForm/>
+                    </Route>
+
+                    <Route exact path="/receipt/create">
+                        <ReceiptForm/>
+                    </Route>
+                    <Route exact path="/receipt/edit/:receiptId(\d+)">
+                        <ReceiptForm/>
+                    </Route>
+
+                    <Route exact path="/entries">
+                        <GigList />
+                        <ReceiptList />
+                    </Route>
+                </TourProvider>
             </GigProvider>
         </ReceiptProvider>
     </>
