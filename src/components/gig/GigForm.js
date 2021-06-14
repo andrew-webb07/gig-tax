@@ -22,6 +22,7 @@ export const GigForm = () => {
     const [isLoading, setIsLoading] = useState(true);
     const {gigId} = useParams();
 	const history = useHistory();
+    const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
 
     const handleControlledInputChange = (event) => {
         const newGig = { ...gig }
@@ -37,6 +38,7 @@ export const GigForm = () => {
             if(gigId) {
                 updateGig({
                     id: gig.id,
+                    userId: currentGigTaxUserId,
                     artist: gig.artist,
                     locationName: gig.locationName,
                     locationAddress: `${gig.address1}, ${gig.city}, ${gig.state}, ${gig.zipCode}`,
@@ -48,6 +50,7 @@ export const GigForm = () => {
                 .then(() => history.push(`/entries`))
             } else {
                 addGig({
+                    userId: currentGigTaxUserId,
                     artist: gig.artist,
                     locationName: gig.locationName,
                     locationAddress: `${gig.address1}, ${gig.city}, ${gig.state}, ${gig.zipCode}`,
@@ -65,10 +68,14 @@ export const GigForm = () => {
         if (gigId) {
             getGigById(gigId)
             .then(gig => {
+                const [ address1, city, state, zipCode ] = gig.locationAddress.split(", ")
+                gig.address1 = address1
+                gig.city = city
+                gig.state = state
+                gig.zipCode = zipCode
                 setGig(gig)
                 setIsLoading(false)
             })
-            // const [ address1, city, state, zipCode ] = Gig.address1.split(",")
         } else {
             setIsLoading(false)
         }
@@ -176,5 +183,4 @@ export const GigForm = () => {
           {gigId ? <>Update Gig</> : <>Add Gig</>}</button>
         </form>
       )
-  
 }

@@ -6,30 +6,6 @@ import "./Receipt.css"
 export const ReceiptForm = () => {
     const { addReceipt, getReceiptById, updateReceipt } = useContext(ReceiptContext)
 
- 
-    //     if (receiptId) {
-    //         const [ businessAddress1, businessCity, businessState, businessZipcode ] = receipt.businessAddress.split(",")
-    //         const [ receipt, setReceipt ] = useState({
-    //             businessAddress1: businessAddress1,
-    //             businessCity: businessCity,
-    //             businessState: businessState,
-    //             businessZipcode: businessZipcode,
-    //     })
-    // } else {
-    //         const [ receipt, setReceipt ] = useState({
-    //             businessName: "",
-    //             businessAddress1: "",
-    //             businessCity: "",
-    //             businessState: "",
-    //             businessZipcode: "",
-    //             description: "",
-    //             date: "",
-    //             price: "",
-    //             receiptNumber: ""
-    //         })
-    // }
-    
-
     const [ receipt, setReceipt ] = useState({
                     businessName: "",
                     businessAddress1: "",
@@ -45,8 +21,7 @@ export const ReceiptForm = () => {
     const [isLoading, setIsLoading] = useState(true);
     const {receiptId} = useParams();
 	const history = useHistory();
-
-     // const [ businessAddress1, businessCity, businessState, businessZipcode ] = receipt.businessAddress1.split(",")
+    const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
 
     const handleControlledInputChange = (event) => {
         const newReceipt = { ...receipt }
@@ -62,8 +37,9 @@ export const ReceiptForm = () => {
             if(receiptId) {
                 updateReceipt({
                     id: receipt.id,
+                    userId: currentGigTaxUserId,
                     businessName: receipt.businessName,
-                    businessAddress: `${receipt.businessAddress1},${receipt.businessCity},${receipt.businessState},${receipt.businessZipcode}`,
+                    businessAddress: `${receipt.businessAddress1}, ${receipt.businessCity}, ${receipt.businessState}, ${receipt.businessZipcode}`,
                     description: receipt.description,
                     date: receipt.date,
                     price: parseFloat(receipt.price),
@@ -72,8 +48,9 @@ export const ReceiptForm = () => {
                 .then(() => history.push(`/entries`))
             } else {
                 addReceipt({
+                    userId:currentGigTaxUserId,
                     businessName: receipt.businessName,
-                    businessAddress: `${receipt.businessAddress1},${receipt.businessCity},${receipt.businessState},${receipt.businessZipcode}`,
+                    businessAddress: `${receipt.businessAddress1}, ${receipt.businessCity}, ${receipt.businessState}, ${receipt.businessZipcode}`,
                     description: receipt.description,
                     date: receipt.date,
                     price: parseFloat(receipt.price),
@@ -88,10 +65,14 @@ export const ReceiptForm = () => {
         if (receiptId) {
             getReceiptById(receiptId)
             .then(receipt => {
+                const [ businessAddress1, businessCity, businessState, businessZipcode ] = receipt.businessAddress.split(", ")
+                    receipt.businessAddress1 = businessAddress1
+                    receipt.businessCity = businessCity
+                    receipt.businessState  = businessState  
+                    receipt.businessZipcode = businessZipcode
                 setReceipt(receipt)
                 setIsLoading(false)
             })
-            // const [ businessAddress1, businessCity, businessState, businessZipcode ] = receipt.businessAddress1.split(",")
         } else {
             setIsLoading(false)
         }
