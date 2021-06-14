@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect } from "react"
 import "./Gig.css"
 import { GigContext } from "./GigProvider"
-import { useParams, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 export const GigList = () => {
     const { gigs, getGigs, deleteGig } = useContext(GigContext)
 
-    const gigId = useParams()
-
     const history = useHistory()
+    const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
+    const currentUserGigs = gigs.filter(gig => gig.userId === currentGigTaxUserId)
 
     useEffect(() => {
         getGigs()
@@ -19,7 +19,7 @@ export const GigList = () => {
             <div className="gigs">
                 <h2 className="gigs__header">Gigs</h2>
                 {
-                    gigs.map(gig => {
+                    currentUserGigs.map(gig => {
                         return (
                             <div className="gig" id={`gig--${gig.id}`}>
                                 <div className="gig__item">Artist: {gig.artist}</div>

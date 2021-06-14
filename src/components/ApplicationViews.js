@@ -9,6 +9,7 @@ import { GigProvider } from "./gig/GigProvider"
 import { GigList } from "./gig/GigList"
 import { TourForm } from "./tour/TourForm"
 import { TourProvider } from "./tour/TourProvider"
+import { TourList } from "./tour/TourList"
 
 export const ApplicationViews = () => {
     return (
@@ -43,6 +44,7 @@ export const ApplicationViews = () => {
 
                     <Route exact path="/entries">
                         <GigList />
+                        <TourList />
                         <ReceiptList />
                     </Route>
                 </TourProvider>

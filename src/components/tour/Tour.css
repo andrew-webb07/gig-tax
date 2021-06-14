@@ -1,0 +1,22 @@
+.tours {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .tour {
+    flex-basis: 28%;
+    margin: 1em;
+    padding: 1em;
+    background-color: rgb(78, 78, 78);
+    box-shadow: black .2em .2em .2em;
+  }
+
+  .tour__item {
+      color: white;
+  }
+
+  .btn {
+      text-align: center;
+  }

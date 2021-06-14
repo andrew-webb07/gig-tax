@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect } from "react"
 import "./Receipt.css"
 import { ReceiptContext } from "./ReceiptProvider"
-import { useParams, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 export const ReceiptList = () => {
     const { receipts, getReceipts, deleteReceipt} = useContext(ReceiptContext)
 
-    const receiptId = useParams()
-
     const history = useHistory()
+    const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
+    const currentUserReceipts = receipts.filter(receipt => receipt.userId === currentGigTaxUserId)
 
     useEffect(() => {
         getReceipts()
@@ -19,7 +19,7 @@ export const ReceiptList = () => {
             <div className="receipts">
                 <h2 className="receipts__header">Receipts</h2>
                 {
-                    receipts.map(receipt => {
+                    currentUserReceipts.map(receipt => {
                         return (
                             <div className="receipt" id={`Receipt--${receipt.id}`}>
                                 <div className="receipt__item">Business: {receipt.businessName}</div>
