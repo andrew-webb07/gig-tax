@@ -99,7 +99,7 @@ export const GigForm = () => {
             <div className="form-group">
               <label htmlFor="locationAddress">Location Address: </label>
               <input type="text" id="address1" name="address" required autoFocus className="form-control"
-              placeholder="Address"
+              placeholder="Location Address"
               onChange={handleControlledInputChange}
               value={gig.address1}/>
             </div>

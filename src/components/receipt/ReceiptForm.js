@@ -46,6 +46,8 @@ export const ReceiptForm = () => {
     const {receiptId} = useParams();
 	const history = useHistory();
 
+     // const [ businessAddress1, businessCity, businessState, businessZipcode ] = receipt.businessAddress1.split(",")
+
     const handleControlledInputChange = (event) => {
         const newReceipt = { ...receipt }
         newReceipt[event.target.id] = event.target.value
