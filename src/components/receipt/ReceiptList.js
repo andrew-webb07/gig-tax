@@ -4,8 +4,7 @@ import { ReceiptContext } from "./ReceiptProvider"
 import { useParams, useHistory } from "react-router-dom"
 
 export const ReceiptList = () => {
-    const { receipts, getReceipts, deleteReceipt, updateReceipt } = useContext(ReceiptContext)
-    const [ receipt, setReceipt ] = useState({})
+    const { receipts, getReceipts, deleteReceipt} = useContext(ReceiptContext)
 
     const receiptId = useParams()
 

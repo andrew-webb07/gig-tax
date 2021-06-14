@@ -6,6 +6,7 @@ import { ReceiptProvider } from "./receipt/ReceiptProvider"
 import { ReceiptList } from "./receipt/ReceiptList"
 import { GigForm } from "./gig/GigForm"
 import { GigProvider } from "./gig/GigProvider"
+import { GigList } from "./gig/GigList"
 
 export const ApplicationViews = () => {
     return (
@@ -29,6 +30,7 @@ export const ApplicationViews = () => {
                 </Route>
 
                 <Route exact path="/entries">
+                    <GigList />
                     <ReceiptList />
                 </Route>
             </GigProvider>
