@@ -6,7 +6,42 @@ import "./Receipt.css"
 export const ReceiptForm = () => {
     const { addReceipt, getReceiptById, updateReceipt } = useContext(ReceiptContext)
 
-    const [ receipt, setReceipt ] = useState({})
+ 
+    //     if (receiptId) {
+    //         const [ businessAddress1, businessCity, businessState, businessZipcode ] = receipt.businessAddress.split(",")
+    //         const [ receipt, setReceipt ] = useState({
+    //             businessAddress1: businessAddress1,
+    //             businessCity: businessCity,
+    //             businessState: businessState,
+    //             businessZipcode: businessZipcode,
+    //     })
+    // } else {
+    //         const [ receipt, setReceipt ] = useState({
+    //             businessName: "",
+    //             businessAddress1: "",
+    //             businessCity: "",
+    //             businessState: "",
+    //             businessZipcode: "",
+    //             description: "",
+    //             date: "",
+    //             price: "",
+    //             receiptNumber: ""
+    //         })
+    // }
+    
+
+    const [ receipt, setReceipt ] = useState({
+                    businessName: "",
+                    businessAddress1: "",
+                    businessCity: "",
+                    businessState: "",
+                    businessZipcode: "",
+                    description: "",
+                    date: "",
+                    price: "",
+                    receiptNumber: ""
+    })
+
     const [isLoading, setIsLoading] = useState(true);
     const {receiptId} = useParams();
 	const history = useHistory();
@@ -18,7 +53,7 @@ export const ReceiptForm = () => {
       }
 
     const handleSaveReceipt = () => {
-        if (receipt.businessName === undefined || receipt.businessAddress === undefined || receipt.businessCity === undefined || receipt.businessState === undefined || receipt.businessZipcode === undefined || receipt.description === undefined || receipt.date === undefined || receipt.price === undefined || receipt.receiptNumber === undefined) {
+        if (receipt.businessName === "" || receipt.businessAddress1 === "" || receipt.businessCity === "" || receipt.businessState === "" || receipt.businessZipcode === "" || receipt.description === "" || receipt.date === "" || receipt.price === "" || receipt.receiptNumber === "") {
             window.alert("Please fill out the form completely")
         } else {
             setIsLoading(true)
@@ -26,16 +61,17 @@ export const ReceiptForm = () => {
                 updateReceipt({
                     id: receipt.id,
                     businessName: receipt.businessName,
-                    businessAddress: `${receipt.businessAddress}, ${receipt.businessCity}, ${receipt.businessState}, ${receipt.businessZipcode}`,
+                    businessAddress: `${receipt.businessAddress1}, ${receipt.businessCity}, ${receipt.businessState}, ${receipt.businessZipcode}`,
                     description: receipt.description,
-                    date: receipt.date.toLocaleDateString(),
+                    date: receipt.date,
                     price: parseFloat(receipt.price),
                     receiptNumber: receipt.receiptNumber
                 })
+                .then(() => history.push(`/entries`))
             } else {
                 addReceipt({
                     businessName: receipt.businessName,
-                    businessAddress: `${receipt.businessAddress}, ${receipt.businessCity}, ${receipt.businessState}, ${receipt.businessZipcode}`,
+                    businessAddress: `${receipt.businessAddress1}, ${receipt.businessCity}, ${receipt.businessState}, ${receipt.businessZipcode}`,
                     description: receipt.description,
                     date: receipt.date,
                     price: parseFloat(receipt.price),
@@ -53,6 +89,7 @@ export const ReceiptForm = () => {
                 setReceipt(receipt)
                 setIsLoading(false)
             })
+            // const [ businessAddress1, businessCity, businessState, businessZipcode ] = receipt.businessAddress1.split(",")
         } else {
             setIsLoading(false)
         }
@@ -73,10 +110,10 @@ export const ReceiptForm = () => {
           <fieldset>
             <div className="form-group">
               <label htmlFor="businessAddress">Business Address: </label>
-              <input type="text" id="businessAddress" name="address" required autoFocus className="form-control"
+              <input type="text" id="businessAddress1" name="address" required autoFocus className="form-control"
               placeholder="Business Address"
               onChange={handleControlledInputChange}
-              value={receipt.businessAddress}/>
+              value={receipt.businessAddress1}/>
             </div>
           </fieldset>
           <fieldset>
@@ -148,7 +185,7 @@ export const ReceiptForm = () => {
               event.preventDefault() // Prevent browser from submitting the form and refreshing the page
               handleSaveReceipt()
             }}>
-          {receiptId ? <>Save receipt</> : <>Add receipt</>}</button>
+          {receiptId ? <>Update receipt</> : <>Add receipt</>}</button>
         </form>
       )
   

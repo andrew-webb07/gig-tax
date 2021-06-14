@@ -30,9 +30,25 @@ export const ReceiptProvider = (props) => {
             .then(getReceipts)
     }
 
+    const getReceiptById = receiptId => {
+        return fetch(`http://localhost:8088/receipts/${receiptId}`)
+        .then(res => res.json())
+    }
+
+    const updateReceipt = receipt => {
+        return fetch(`http://localhost:8088/receipts/${receipt.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(receipt)
+        })
+          .then(getReceipts)
+      }
+
     return (
         <ReceiptContext.Provider value={{
-            receipts, getReceipts, addReceipt, deleteReceipt
+            receipts, getReceipts, addReceipt, deleteReceipt, getReceiptById, updateReceipt
         }}>
             {props.children}
         </ReceiptContext.Provider>

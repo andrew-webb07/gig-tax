@@ -15,6 +15,9 @@ export const ApplicationViews = () => {
             <Route exact path="/receipt/create">
                 <ReceiptForm/>
             </Route>
+            <Route path="/receipt/edit/:receiptId(\d+)">
+                <ReceiptForm/>
+            </Route>
 
             <Route exact path="/entries">
                 <ReceiptList />

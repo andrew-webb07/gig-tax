@@ -1,9 +1,15 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import "./Receipt.css"
 import { ReceiptContext } from "./ReceiptProvider"
+import { useParams, useHistory } from "react-router-dom"
 
 export const ReceiptList = () => {
-    const { receipts, getReceipts } = useContext(ReceiptContext)
+    const { receipts, getReceipts, deleteReceipt, updateReceipt } = useContext(ReceiptContext)
+    const [ receipt, setReceipt ] = useState({})
+
+    const receiptId = useParams()
+
+    const history = useHistory()
 
     useEffect(() => {
         getReceipts()
@@ -23,6 +29,11 @@ export const ReceiptList = () => {
                                 <div className="receipt__item">Date: {receipt.date}</div>
                                 <div className="receipt__item">Price: ${receipt.price}</div>
                                 <div className="receipt__item">Receipt Number: {receipt.receiptNumber}</div>
+                                <div className="receipt__buttons">
+                                    <button className="receipt__button" onClick={() => {history.push(`/receipt/edit/${receipt.id}`)}}>Edit</button>
+                                    <button className="receipt__button" onClick={() => {history.push("/entries")
+                                deleteReceipt(receipt.id)}}>Delete</button>
+                                </div>
                             </div>
                         )
                     })
