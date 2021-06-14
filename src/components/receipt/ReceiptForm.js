@@ -61,7 +61,7 @@ export const ReceiptForm = () => {
                 updateReceipt({
                     id: receipt.id,
                     businessName: receipt.businessName,
-                    businessAddress: `${receipt.businessAddress1}, ${receipt.businessCity}, ${receipt.businessState}, ${receipt.businessZipcode}`,
+                    businessAddress: `${receipt.businessAddress1},${receipt.businessCity},${receipt.businessState},${receipt.businessZipcode}`,
                     description: receipt.description,
                     date: receipt.date,
                     price: parseFloat(receipt.price),
@@ -71,7 +71,7 @@ export const ReceiptForm = () => {
             } else {
                 addReceipt({
                     businessName: receipt.businessName,
-                    businessAddress: `${receipt.businessAddress1}, ${receipt.businessCity}, ${receipt.businessState}, ${receipt.businessZipcode}`,
+                    businessAddress: `${receipt.businessAddress1},${receipt.businessCity},${receipt.businessState},${receipt.businessZipcode}`,
                     description: receipt.description,
                     date: receipt.date,
                     price: parseFloat(receipt.price),

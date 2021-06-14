@@ -7,7 +7,7 @@ export const ReceiptProvider = (props) => {
     const [receipts, setReceipts] = useState([])
 
     const getReceipts = () => {
-        return fetch("http://localhost:8088/receipts?_expand=location")
+        return fetch("http://localhost:8088/receipts")
         .then(res => res.json())
         .then(setReceipts)
     }
