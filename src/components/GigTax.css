@@ -1,0 +1,9 @@
+.entryLists {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+h1, h2 {
+    text-align: center;
+}

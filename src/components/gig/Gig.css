@@ -13,10 +13,31 @@
     box-shadow: black .2em .2em .2em;
   }
 
+  .gigs__header {
+    background-color: rgb(78, 78, 78);
+    box-shadow: black .2em .2em .2em;
+    color: white;
+  }
+
   .gig__item {
       color: white;
   }
 
+  .gigForm {
+    border:rgb(78, 78, 78) solid .2em;
+    margin: 2em 10em 10em 10em
+  }
+
   .btn {
       text-align: center;
+      margin: 1em;
+  }
+
+  .form-group {
+    flex-basis: 24%;
+    margin: 0em 5em
+  }
+
+  .form-control {
+
   }

@@ -125,7 +125,7 @@ export const GigForm = () => {
           <fieldset>
             <div className="form-group">
               <label htmlFor="state">State Initials: </label>
-              <input type="text" id="state" name="sstate" required autoFocus className="form-control"
+              <input type="text" id="state" name="state" required autoFocus className="form-control"
               placeholder="State Initials"
               onChange={handleControlledInputChange}
               value={gig.state}/>
@@ -133,9 +133,9 @@ export const GigForm = () => {
           </fieldset>
           <fieldset>
             <div className="form-group">
-              <label htmlFor="zipcode">zipcode: </label>
+              <label htmlFor="zipcode">Zipcode: </label>
               <input type="text" id="zipcode" name="zipcode" required autoFocus className="form-control"
-              placeholder="zipcode"
+              placeholder="Zipcode"
               onChange={handleControlledInputChange}
               value={gig.zipcode}/>
             </div>

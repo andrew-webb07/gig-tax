@@ -13,6 +13,12 @@
     box-shadow: black .2em .2em .2em;
   }
 
+  .receipts__header {
+    background-color: rgb(78, 78, 78);
+    box-shadow: black .2em .2em .2em;
+    color: white;
+  }
+
   .receipt__item {
       color: white;
   }

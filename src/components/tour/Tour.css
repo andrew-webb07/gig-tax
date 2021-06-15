@@ -13,6 +13,12 @@
     box-shadow: black .2em .2em .2em;
   }
 
+  .tours__header {
+    background-color: rgb(78, 78, 78);
+    box-shadow: black .2em .2em .2em;
+    color: white;
+  }
+
   .tour__item {
       color: white;
   }
