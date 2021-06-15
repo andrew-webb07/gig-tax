@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
-import { useHistory, useParams } from 'react-router-dom';
+import React, { useContext, useEffect } from "react"
 import { ReceiptContext } from "../receipt/ReceiptProvider"
 import { GigContext } from "../gig/GigProvider"
 import { TourContext } from "../tour/TourProvider"
@@ -51,25 +50,25 @@ export const YearTotal = () => {
         <div className="yearTotalBoxes">
             <div className="yearTotalBox">
                 <h2>Total of Receipts</h2>
-                <div>${sumOfReceipts}</div>
+                <div className="yearTotalBox__item">${sumOfReceipts}</div>
             </div>
             <div className="yearTotalBox">
                 <h2>Total Amount Made</h2>
-                <div>${totalAmountMade}</div>
-                <div>Total of Gigs: ${sumOfGigs}</div>
-                <div>Total of Tours: ${sumOfTours}</div>
+                <div className="yearTotalBox__item">${totalAmountMade}</div>
+                <div className="yearTotalBox__item">(Total of Gigs: ${sumOfGigs})</div>
+                <div className="yearTotalBox__item">(Total of Tours: ${sumOfTours})</div>
             </div>
             <div className="yearTotalBox">
                 <h2>Total Miles Driven</h2>
-                <div>{totalOfMiles}</div>
+                <div className="yearTotalBox__item">{totalOfMiles}</div>
             </div>
             <div className="yearTotalBox">
                 <h2>Total Mileage Tax Deduction</h2>
-                <div>${totalMileDeduction}</div>
+                <div className="yearTotalBox__item">${totalMileDeduction}</div>
             </div>
             <div className="yearTotalBox">
                 <h2>Total Amount of Taxes Owed</h2>
-                <div>{totalYearTaxOwed}</div>
+                <div className="yearTotalBox__item">{totalYearTaxOwed}</div>
             </div>
         </div>
         </>

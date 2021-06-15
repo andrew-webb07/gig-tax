@@ -21,3 +21,7 @@
     background-color: white;
     box-shadow: black .2em .2em .2em;
   }
+
+  .yearTotalBox__item {
+      text-align: center;
+  }
