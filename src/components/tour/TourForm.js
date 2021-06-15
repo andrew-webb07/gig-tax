@@ -11,7 +11,7 @@ export const TourForm = () => {
                     address1: "",
                     city: "",
                     state: "",
-                    zipCode: "",
+                    zipcode: "",
                     tourDescription: "",
                     numberOfGigs: "",
                     perDiem: "",
@@ -43,16 +43,18 @@ export const TourForm = () => {
     }
 
     const handleSavetour = () => {
-        if (tour.artist === "" || tour.address1 === "" || tour.city === "" || tour.state === "" || tour.zipCode === "" || tour.tourDescription === "" || tour.numberOfGigs === "" || tour.perDiem === "" || tour.travelDayPay === "" || tour.dateStart === "" || tour.dateEnd === "" || tour.tourGigPay === "" || tour.mileage === "") {
+        if (tour.artist === "" || tour.address1 === "" || tour.city === "" || tour.state === "" || tour.zipcode === "" || tour.tourDescription === "" || tour.numberOfGigs === "" || tour.perDiem === "" || tour.travelDayPay === "" || tour.dateStart === "" || tour.dateEnd === "" || tour.tourGigPay === "" || tour.mileage === "") {
             window.alert("Please fill out the form completely")
-        } else {
+        } else if (Number.isInteger(parseInt(tour.tourGigPay)) === false || Number.isInteger(parseInt(tour.zipcode)) === false|| Number.isInteger(parseInt(tour.mileage)) === false || Number.isInteger(parseInt(tour.numberOfGigs)) === false || Number.isInteger(parseInt(tour.perDiem)) === false || Number.isInteger(parseInt(tour.travelDayPay)) === false) {
+          window.alert("Please enter a number only")
+      } else {
             setIsLoading(true)
             if(tourId) {
                 updateTour({
                   id: tour.id,
                   userId: currentGigTaxUserId,
                   artist: tour.artist,
-                  tourDepartureAddress: `${tour.address1}, ${tour.city}, ${tour.state}, ${tour.zipCode}`,
+                  tourDepartureAddress: `${tour.address1}, ${tour.city}, ${tour.state}, ${tour.zipcode}`,
                   tourDescription: tour.tourDescription,
                   numberOfGigs: parseInt(tour.numberOfGigs),
                   perDiem: parseFloat(tour.perDiem),
@@ -68,7 +70,7 @@ export const TourForm = () => {
                 addTour({
                   userId: currentGigTaxUserId,
                   artist: tour.artist,
-                  tourDepartureAddress: `${tour.address1}, ${tour.city}, ${tour.state}, ${tour.zipCode}`,
+                  tourDepartureAddress: `${tour.address1}, ${tour.city}, ${tour.state}, ${tour.zipcode}`,
                   tourDescription: tour.tourDescription,
                   numberOfGigs: parseInt(tour.numberOfGigs),
                   perDiem: parseFloat(tour.perDiem),
@@ -88,11 +90,11 @@ export const TourForm = () => {
         if (tourId) {
             getTourById(tourId)
             .then(tour => {
-              const [ address1, city, state, zipCode ] = tour.tourDepartureAddress.split(", ")
+              const [ address1, city, state, zipcode ] = tour.tourDepartureAddress.split(", ")
                 tour.address1 = address1
                 tour.city = city
                 tour.state = state
-                tour.zipCode = zipCode
+                tour.zipcode = zipcode
                 setTour(tour)
                 setIsLoading(false)
             })
@@ -142,11 +144,11 @@ export const TourForm = () => {
           </fieldset>
           <fieldset>
             <div className="form-group">
-              <label htmlFor="zipCode">ZipCode: </label>
-              <input type="text" id="zipCode" name="zipCode" required autoFocus className="form-control"
-              placeholder="ZipCode"
+              <label htmlFor="zipcode">zipcode: </label>
+              <input type="text" id="zipcode" name="zipcode" required autoFocus className="form-control"
+              placeholder="zipcode"
               onChange={handleControlledInputChange}
-              value={tour.zipCode}/>
+              value={tour.zipcode}/>
             </div>
           </fieldset>
           <fieldset>
