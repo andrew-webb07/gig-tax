@@ -10,6 +10,8 @@ import { GigList } from "./gig/GigList"
 import { TourForm } from "./tour/TourForm"
 import { TourProvider } from "./tour/TourProvider"
 import { TourList } from "./tour/TourList"
+import { YearTotal } from "./total/YearTotal"
+import "./total/Totals.css"
 
 export const ApplicationViews = () => {
     return (
@@ -47,6 +49,13 @@ export const ApplicationViews = () => {
                         <TourList />
                         <ReceiptList />
                     </Route>
+
+                    <Route exact path="/totals">
+                        <div className="totalsBoxes">
+                        <YearTotal />
+                        </div>
+                    </Route>
+
                 </TourProvider>
             </GigProvider>
         </ReceiptProvider>

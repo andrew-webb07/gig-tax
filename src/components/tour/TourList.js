@@ -31,6 +31,7 @@ export const TourList = () => {
                                 <div className="tour__item">Start Date: {tour.dateStart}</div>
                                 <div className="tour__item">Start End: {tour.dateEnd}</div>
                                 <div className="tour__item">Tour Gig Pay: ${tour.tourGigPay}</div>
+                                <div className="tour__item">Mileage: {tour.mileage}</div>
                                 <div className="tour__buttons">
                                     <button className="tour__button" onClick={() => {history.push(`/tour/edit/${tour.id}`)}}>Edit</button>
                                     <button className="tour__button" onClick={() => {history.push("/entries")
