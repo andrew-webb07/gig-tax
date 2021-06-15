@@ -12,7 +12,7 @@ export const GigForm = () => {
                     address1: "",
                     city: "",
                     state: "",
-                    zipCode: "",
+                    zipcode: "",
                     gigDescription: "",
                     date: "",
                     gigPay: "",
@@ -31,8 +31,10 @@ export const GigForm = () => {
       }
 
     const handleSaveGig = () => {
-        if (gig.artist === "" || gig.locationName === "" || gig.address1 === "" || gig.city === "" || gig.state === "" || gig.zipCode === "" || gig.gigDescription === "" || gig.date === "" || gig.gigPay === "" || gig.mileage === "") {
+        if (gig.artist === "" || gig.locationName === "" || gig.address1 === "" || gig.city === "" || gig.state === "" || gig.zipcode === "" || gig.gigDescription === "" || gig.date === "" || gig.gigPay === "" || gig.mileage === "") {
             window.alert("Please fill out the form completely")
+        } else if (Number.isInteger(parseInt(gig.gigPay)) === false || Number.isInteger(parseInt(gig.zipcode)) === false|| Number.isInteger(parseInt(gig.mileage)) === false) {
+            window.alert("Please enter a number only")
         } else {
             setIsLoading(true)
             if(gigId) {
@@ -41,7 +43,7 @@ export const GigForm = () => {
                     userId: currentGigTaxUserId,
                     artist: gig.artist,
                     locationName: gig.locationName,
-                    locationAddress: `${gig.address1}, ${gig.city}, ${gig.state}, ${gig.zipCode}`,
+                    locationAddress: `${gig.address1}, ${gig.city}, ${gig.state}, ${gig.zipcode}`,
                     gigDescription: gig.gigDescription,
                     date: gig.date,
                     gigPay: parseFloat(gig.gigPay),
@@ -53,7 +55,7 @@ export const GigForm = () => {
                     userId: currentGigTaxUserId,
                     artist: gig.artist,
                     locationName: gig.locationName,
-                    locationAddress: `${gig.address1}, ${gig.city}, ${gig.state}, ${gig.zipCode}`,
+                    locationAddress: `${gig.address1}, ${gig.city}, ${gig.state}, ${gig.zipcode}`,
                     gigDescription: gig.gigDescription,
                     date: gig.date,
                     gigPay: parseFloat(gig.gigPay),
@@ -68,11 +70,11 @@ export const GigForm = () => {
         if (gigId) {
             getGigById(gigId)
             .then(gig => {
-                const [ address1, city, state, zipCode ] = gig.locationAddress.split(", ")
+                const [ address1, city, state, zipcode ] = gig.locationAddress.split(", ")
                 gig.address1 = address1
                 gig.city = city
                 gig.state = state
-                gig.zipCode = zipCode
+                gig.zipcode = zipcode
                 setGig(gig)
                 setIsLoading(false)
             })
@@ -131,11 +133,11 @@ export const GigForm = () => {
           </fieldset>
           <fieldset>
             <div className="form-group">
-              <label htmlFor="zipCode">ZipCode: </label>
-              <input type="text" id="zipCode" name="zipCode" required autoFocus className="form-control"
-              placeholder="ZipCode"
+              <label htmlFor="zipcode">zipcode: </label>
+              <input type="text" id="zipcode" name="zipcode" required autoFocus className="form-control"
+              placeholder="zipcode"
               onChange={handleControlledInputChange}
-              value={gig.zipCode}/>
+              value={gig.zipcode}/>
             </div>
           </fieldset>
           <fieldset>
