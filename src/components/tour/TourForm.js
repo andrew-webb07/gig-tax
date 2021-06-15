@@ -34,8 +34,16 @@ export const TourForm = () => {
         setTour(newTour)
       }
 
+    const calculateTravelDays = (date1, date2, totalGigs) => {
+      // Calculate the time difference of two dates
+      const differenceInTime = new Date(date2).getTime() - new Date(date1).getTime()
+      // Divide the time difference of both the dates by no. of milliseconds in a day
+      const differenceInDays = differenceInTime / (1000 * 3600 * 24)
+      return differenceInDays - totalGigs
+    }
+
     const handleSavetour = () => {
-        if (tour.artist === "" || tour.address1 === "" || tour.city === "" || tour.state === "" || tour.zipCode === "" || tour.tourDescription === "" || tour.numberOfGigs === "" || tour.perDiem === "" || tour.travelDays === "" || tour.travelDayPay === "" || tour.dateStart === "" || tour.dateEnd === "" || tour.tourGigPay === "" || tour.mileage === "") {
+        if (tour.artist === "" || tour.address1 === "" || tour.city === "" || tour.state === "" || tour.zipCode === "" || tour.tourDescription === "" || tour.numberOfGigs === "" || tour.perDiem === "" || tour.travelDayPay === "" || tour.dateStart === "" || tour.dateEnd === "" || tour.tourGigPay === "" || tour.mileage === "") {
             window.alert("Please fill out the form completely")
         } else {
             setIsLoading(true)
@@ -48,7 +56,7 @@ export const TourForm = () => {
                   tourDescription: tour.tourDescription,
                   numberOfGigs: parseInt(tour.numberOfGigs),
                   perDiem: parseFloat(tour.perDiem),
-                  travelDays: parseInt(tour.travelDays),
+                  travelDays: parseInt(calculateTravelDays(tour.dateStart, tour.dateEnd, tour.numberOfGigs)),
                   travelDayPay: parseFloat(tour.travelDayPay),
                   dateStart: tour.dateStart,
                   dateEnd: tour.dateEnd,
@@ -64,7 +72,7 @@ export const TourForm = () => {
                   tourDescription: tour.tourDescription,
                   numberOfGigs: parseInt(tour.numberOfGigs),
                   perDiem: parseFloat(tour.perDiem),
-                  travelDays: parseInt(tour.travelDays),
+                  travelDays: parseInt(calculateTravelDays(tour.dateStart, tour.dateEnd, tour.numberOfGigs)),
                   travelDayPay: parseFloat(tour.travelDayPay),
                   dateStart: tour.dateStart,
                   dateEnd: tour.dateEnd,
@@ -159,7 +167,7 @@ export const TourForm = () => {
               value={tour.perDiem}/>
             </div>
           </fieldset>
-          <fieldset>
+          {/* <fieldset>
             <div className="form-group">
               <label htmlFor="travelDays">Number Of Travel Days: </label>
               <input type="text" id="travelDays" name="travelDays" required autoFocus className="form-control"
@@ -167,7 +175,7 @@ export const TourForm = () => {
               onChange={handleControlledInputChange}
               value={tour.travelDays}/>
             </div>
-          </fieldset>
+          </fieldset> */}
           <fieldset>
             <div className="form-group">
               <label htmlFor="travelDayPay">Travel Day Pay: </label>
