@@ -1,10 +1,12 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import "./Tour.css"
 import { TourContext } from "./TourProvider"
 import { useHistory } from "react-router-dom"
 
 export const TourList = () => {
-    const { tours, getTours, deleteTour } = useContext(TourContext)
+    const { tours, getTours, deleteTour, searchTerms } = useContext(TourContext)
+
+    const [ filteredTours, setFiltered ] = useState([])
 
     const history = useHistory()
     const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
@@ -14,12 +16,21 @@ export const TourList = () => {
         getTours()
     }, [])
 
+    useEffect(() => {
+        if (searchTerms !== "") {
+          const subset = currentUserTours.filter(tour => tour.artist.toLowerCase().includes(searchTerms.toLowerCase()) || tour.tourDescription.toLowerCase().includes(searchTerms.toLowerCase()))
+          setFiltered(subset)
+        } else {
+          setFiltered(currentUserTours)
+        }
+      }, [searchTerms, tours])
+
     return (
         <>
             <div className="tours">
                 <h2 className="tours__header">Tours</h2>
                 {
-                    currentUserTours.map(tour => {
+                    filteredTours.map(tour => {
                         return (
                             <div className="tour" id={`tour--${tour.id}`}>
                                 <div className="tour__item">Artist: {tour.artist}</div>

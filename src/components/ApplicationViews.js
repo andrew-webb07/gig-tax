@@ -14,6 +14,7 @@ import { YearTotal } from "./total/YearTotal"
 import "./total/Totals.css"
 import "./GigTax.css"
 import { QuarterlyTotal } from "./total/QuarterlyTotal"
+import { Search } from "./Search"
 
 export const ApplicationViews = () => {
     return (
@@ -47,6 +48,7 @@ export const ApplicationViews = () => {
                     </Route>
 
                     <Route exact path="/entries">
+                    <Search/>
                         <div className="entryLists">
                             <GigList />
                             <TourList />
