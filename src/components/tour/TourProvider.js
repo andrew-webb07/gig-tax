@@ -5,6 +5,7 @@ export const TourContext = createContext()
 export const TourProvider = (props) => {
 
     const [tours, setTours] = useState([])
+    const [ searchTerms, setTourSearchTerms ] = useState("")
 
     const getTours = () => {
         return fetch("http://localhost:8088/tours")
@@ -48,7 +49,7 @@ export const TourProvider = (props) => {
 
     return (
         <TourContext.Provider value={{
-            tours, getTours, addTour, deleteTour, getTourById, updateTour
+            tours, getTours, addTour, deleteTour, getTourById, updateTour, setTourSearchTerms, searchTerms
         }}>
             {props.children}
         </TourContext.Provider>

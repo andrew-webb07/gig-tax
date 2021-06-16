@@ -5,6 +5,7 @@ export const GigContext = createContext()
 export const GigProvider = (props) => {
 
     const [gigs, setGigs] = useState([])
+    const [ searchTerms, setGigSearchTerms ] = useState("")
 
     const getGigs = () => {
         return fetch("http://localhost:8088/gigs")
@@ -48,7 +49,7 @@ export const GigProvider = (props) => {
 
     return (
         <GigContext.Provider value={{
-            gigs, getGigs, addGig, deleteGig, getGigById, updateGig
+            gigs, getGigs, addGig, deleteGig, getGigById, updateGig, setGigSearchTerms, searchTerms
         }}>
             {props.children}
         </GigContext.Provider>

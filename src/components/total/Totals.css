@@ -23,7 +23,7 @@
   }
 
   .yearTotalBox__item {
-      margin-left: 7em
+      text-align: center;
   }
 
   .quarterlyTotalBoxes {
@@ -42,8 +42,4 @@
     padding: 2em;
     background-color: white;
     box-shadow: black .2em .2em .2em;
-  }
-
-  .quarterTotalBox__item {
-
   }

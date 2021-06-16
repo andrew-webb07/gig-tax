@@ -1,10 +1,12 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import "./Receipt.css"
 import { ReceiptContext } from "./ReceiptProvider"
 import { useHistory } from "react-router-dom"
 
 export const ReceiptList = () => {
-    const { receipts, getReceipts, deleteReceipt} = useContext(ReceiptContext)
+    const { receipts, getReceipts, deleteReceipt, searchTerms} = useContext(ReceiptContext)
+
+    const [ filteredReceipts, setFiltered ] = useState([])
 
     const history = useHistory()
     const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
@@ -14,12 +16,21 @@ export const ReceiptList = () => {
         getReceipts()
     }, [])
 
+    useEffect(() => {
+        if (searchTerms !== "") {
+          const subset = currentUserReceipts.filter(receipt => receipt.businessName.toLowerCase().includes(searchTerms.toLowerCase()))
+          setFiltered(subset)
+        } else {
+          setFiltered(currentUserReceipts)
+        }
+      }, [searchTerms, receipts])
+
     return (
         <>
             <div className="receipts">
                 <h2 className="receipts__header">Receipts</h2>
                 {
-                    currentUserReceipts.map(receipt => {
+                    filteredReceipts.map(receipt => {
                         return (
                             <div className="receipt" id={`Receipt--${receipt.id}`}>
                                 <div className="receipt__item">Business: {receipt.businessName}</div>
