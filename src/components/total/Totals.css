@@ -23,5 +23,27 @@
   }
 
   .yearTotalBox__item {
-      text-align: center;
+      margin-left: 7em
+  }
+
+  .quarterlyTotalBoxes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .quarterlyTotalBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 28%;
+    margin: 1em;
+    padding: 2em;
+    background-color: white;
+    box-shadow: black .2em .2em .2em;
+  }
+
+  .quarterTotalBox__item {
+
   }
