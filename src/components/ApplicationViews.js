@@ -14,7 +14,9 @@ import { YearTotal } from "./total/YearTotal"
 import "./total/Totals.css"
 import "./GigTax.css"
 import { QuarterlyTotal } from "./total/QuarterlyTotal"
-import { Search } from "./Search"
+import { Search } from "./entries/Search"
+import { YearDropDownEntries } from "./entries/YearDropDownEntries"
+import { YearDropDownTotals } from "./entries/YearDropDownTotals"
 
 export const ApplicationViews = () => {
     return (
@@ -48,16 +50,19 @@ export const ApplicationViews = () => {
                     </Route>
 
                     <Route exact path="/entries">
-                    <Search/>
-                        <div className="entryLists">
-                            <GigList />
-                            <TourList />
-                            <ReceiptList />
-                        </div>
+                        <Search/>
+                        <YearDropDownEntries />
+
+                            <div className="entryLists">
+                                <GigList />
+                                <TourList />
+                                <ReceiptList />
+                            </div>
                     </Route>
 
                     <Route exact path="/totals">
                         <div className="totalsBoxes">
+                            <YearDropDownTotals />
                             <YearTotal />
                         </div>
                         <div className="totalsBoxes">

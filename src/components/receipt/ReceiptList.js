@@ -4,7 +4,7 @@ import { ReceiptContext } from "./ReceiptProvider"
 import { useHistory } from "react-router-dom"
 
 export const ReceiptList = () => {
-    const { receipts, getReceipts, deleteReceipt, searchTerms} = useContext(ReceiptContext)
+    const { receipts, getReceipts, deleteReceipt, searchTerms, entriesYear} = useContext(ReceiptContext)
 
     const [ filteredReceipts, setFiltered ] = useState([])
 
@@ -24,6 +24,15 @@ export const ReceiptList = () => {
           setFiltered(currentUserReceipts)
         }
       }, [searchTerms, receipts])
+
+      useEffect(() => {
+        if (entriesYear !== "") {
+          const subset = currentUserReceipts.filter(receipt => Date.parse(receipt.date) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(receipt.date) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))
+          setFiltered(subset)
+        } else {
+          setFiltered(currentUserReceipts)
+        }
+      }, [entriesYear, receipts])
 
     return (
         <>

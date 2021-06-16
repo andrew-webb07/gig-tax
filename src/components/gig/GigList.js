@@ -4,7 +4,7 @@ import { GigContext } from "./GigProvider"
 import { useHistory } from "react-router-dom"
 
 export const GigList = () => {
-    const { gigs, getGigs, deleteGig, searchTerms } = useContext(GigContext)
+    const { gigs, getGigs, deleteGig, searchTerms, entriesYear } = useContext(GigContext)
 
     const [ filteredGigs, setFiltered ] = useState([])
 
@@ -24,6 +24,15 @@ export const GigList = () => {
           setFiltered(currentUserGigs)
         }
       }, [searchTerms, gigs])
+
+      useEffect(() => {
+        if (entriesYear !== "") {
+          const subset = currentUserGigs.filter(gig => Date.parse(gig.date) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(gig.date) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))
+          setFiltered(subset)
+        } else {
+          setFiltered(currentUserGigs)
+        }
+      }, [entriesYear, gigs])
 
     return (
         <>

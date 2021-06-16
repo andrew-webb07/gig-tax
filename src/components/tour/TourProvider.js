@@ -6,6 +6,8 @@ export const TourProvider = (props) => {
 
     const [tours, setTours] = useState([])
     const [ searchTerms, setTourSearchTerms ] = useState("")
+    const [ entriesYear , setTourYearEntries] = useState("")
+    const [ totalsYear , setTourYear] = useState("")
 
     const getTours = () => {
         return fetch("http://localhost:8088/tours")
@@ -49,7 +51,7 @@ export const TourProvider = (props) => {
 
     return (
         <TourContext.Provider value={{
-            tours, getTours, addTour, deleteTour, getTourById, updateTour, setTourSearchTerms, searchTerms
+            tours, getTours, addTour, deleteTour, getTourById, updateTour, setTourSearchTerms, searchTerms, setTourYear, entriesYear, setTourYearEntries, totalsYear
         }}>
             {props.children}
         </TourContext.Provider>

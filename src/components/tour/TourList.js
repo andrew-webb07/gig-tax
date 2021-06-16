@@ -4,7 +4,7 @@ import { TourContext } from "./TourProvider"
 import { useHistory } from "react-router-dom"
 
 export const TourList = () => {
-    const { tours, getTours, deleteTour, searchTerms } = useContext(TourContext)
+    const { tours, getTours, deleteTour, searchTerms, entriesYear } = useContext(TourContext)
 
     const [ filteredTours, setFiltered ] = useState([])
 
@@ -24,6 +24,15 @@ export const TourList = () => {
           setFiltered(currentUserTours)
         }
       }, [searchTerms, tours])
+
+      useEffect(() => {
+        if (entriesYear !== "") {
+          const subset = currentUserTours.filter(tour => Date.parse(tour.dateEnd) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(tour.dateEnd) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))
+          setFiltered(subset)
+        } else {
+          setFiltered(currentUserTours)
+        }
+      }, [entriesYear, tours])
 
     return (
         <>

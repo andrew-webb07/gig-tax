@@ -4,11 +4,9 @@ import { ApplicationViews } from "./ApplicationViews";
 import { NavBar } from "./nav/NavBar";
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
-import { useHistory } from "react-router-dom"
 import "./GigTax.css";
 
 export const GigTax = () => {
-    const history = useHistory()
 
 return (
         <>

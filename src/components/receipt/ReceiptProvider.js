@@ -6,6 +6,8 @@ export const ReceiptProvider = (props) => {
 
     const [receipts, setReceipts] = useState([])
     const [ searchTerms, setReceiptSearchTerms ] = useState("")
+    const [ entriesYear , setReceiptYearEntries] = useState("")
+    const [ totalsYear , setReceiptYear] = useState("")
 
     const getReceipts = () => {
         return fetch("http://localhost:8088/receipts")
@@ -49,7 +51,7 @@ export const ReceiptProvider = (props) => {
 
     return (
         <ReceiptContext.Provider value={{
-            receipts, getReceipts, addReceipt, deleteReceipt, getReceiptById, updateReceipt, setReceiptSearchTerms, searchTerms
+            receipts, getReceipts, addReceipt, deleteReceipt, getReceiptById, updateReceipt, setReceiptSearchTerms, searchTerms, setReceiptYear, entriesYear, setReceiptYearEntries, totalsYear
         }}>
             {props.children}
         </ReceiptContext.Provider>
