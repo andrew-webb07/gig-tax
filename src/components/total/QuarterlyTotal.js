@@ -1,22 +1,55 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { ReceiptContext } from "../receipt/ReceiptProvider"
 import { GigContext } from "../gig/GigProvider"
 import { TourContext } from "../tour/TourProvider"
 import "./Totals.css"
 
 export const QuarterlyTotal = () => {
-    const { receipts, getReceipts } = useContext(ReceiptContext)
+    const { receipts, getReceipts, totalsYear } = useContext(ReceiptContext)
     const { tours, getTours } = useContext(TourContext)
     const { gigs, getGigs } = useContext(GigContext)
     const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
 
-    useEffect(() => {
-        getReceipts().then(getGigs).then(getTours)
-    }, [])
-
     const currentUserReceipts = receipts.filter(receipt => receipt.userId === currentGigTaxUserId)
     const currentUserGigs = gigs.filter(gig => gig.userId === currentGigTaxUserId)
     const currentUserTours = tours.filter(tour => tour.userId === currentGigTaxUserId)
+
+    const [ filteredReceipts, setFilteredReceipts ] = useState([])
+    const [ filteredGigs, setFilteredGigs ] = useState([])
+    const [ filteredTours, setFilteredTours ] = useState([])
+
+
+    useEffect(() => {
+        getReceipts().then(getGigs).then(getTours)
+    }, [])
+    
+
+    useEffect(() => {
+        if (totalsYear !== "year" && totalsYear !== "") {
+          const subset = currentUserReceipts.filter(receipt => Date.parse(receipt.date) >= Date.parse(`01/01/${totalsYear}`) && Date.parse(receipt.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
+          setFilteredReceipts(subset)
+        } else {
+          setFilteredReceipts(currentUserReceipts)
+        }
+      }, [totalsYear, receipts])
+
+      useEffect(() => {
+        if (totalsYear !== "year" && totalsYear !== "") {
+          const subset = currentUserGigs.filter(gig => Date.parse(gig.date) >= Date.parse(`01/01/${totalsYear}`) && Date.parse(gig.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
+          setFilteredGigs(subset)
+        } else {
+          setFilteredGigs(currentUserGigs)
+        }
+      }, [totalsYear, gigs])
+
+      useEffect(() => {
+        if (totalsYear !== "year" && totalsYear !== "") {
+          const subset = currentUserTours.filter(tour => Date.parse(tour.dateEnd) >= Date.parse(`01/01/${totalsYear}`) && Date.parse(tour.dateEnd) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
+          setFilteredTours(subset)
+        } else {
+          setFilteredTours(currentUserTours)
+        }
+      }, [totalsYear, tours])
 
     let sumOfReceiptsQuarter1 = 0
     let sumOfReceiptsQuarter2 = 0
@@ -38,60 +71,60 @@ export const QuarterlyTotal = () => {
     let sumOfToursQuarter3 = 0
     let sumOfToursQuarter4 = 0
 
-    for (const receipt of currentUserReceipts) {
-        if(Date.parse(receipt.date) >= Date.parse("01/01/2021") && Date.parse(receipt.date) <= Date.parse("03/31/2021")) {
+    for (const receipt of filteredReceipts) {
+        if(Date.parse(receipt.date) >= Date.parse(`01/01/${totalsYear}`) && Date.parse(receipt.date) <= Date.parse(`03/31/${totalsYear}`)) {
             sumOfReceiptsQuarter1 += receipt.price
         }
-        else if(Date.parse(receipt.date) >= Date.parse("04/01/2021") && Date.parse(receipt.date) <= Date.parse("06/30/2021")) {
+        else if(Date.parse(receipt.date) >= Date.parse(`04/01/${totalsYear}`) && Date.parse(receipt.date) <= Date.parse(`06/30/${totalsYear}`)) {
             sumOfReceiptsQuarter2 += receipt.price
         }
-        else if(Date.parse(receipt.date) >= Date.parse("07/01/2021") && Date.parse(receipt.date) <= Date.parse("09/30/2021")) {
+        else if(Date.parse(receipt.date) >= Date.parse(`07/01/${totalsYear}`) && Date.parse(receipt.date) <= Date.parse(`09/30/${totalsYear}`)) {
             sumOfReceiptsQuarter3 += receipt.price
         }
-        else if(Date.parse(receipt.date) >= Date.parse("10/01/2021") && Date.parse(receipt.date) <= Date.parse("12/31/2021")) {
+        else if(Date.parse(receipt.date) >= Date.parse(`10/01/${totalsYear}`) && Date.parse(receipt.date) <= Date.parse(`12/31/${totalsYear}`)) {
             sumOfReceiptsQuarter4 += receipt.price
         }
     }
 
-    for (const gig of currentUserGigs) {
-        if(Date.parse(gig.date) >= Date.parse("01/01/2021") && Date.parse(gig.date) <= Date.parse("03/31/2021")) {
+    for (const gig of filteredGigs) {
+        if(Date.parse(gig.date) >= Date.parse(`01/01/${totalsYear}`) && Date.parse(gig.date) <= Date.parse(`03/31/${totalsYear}`)) {
             sumOfGigsQuarter1 += gig.gigPay
             totalOfMilesQuarter1 += gig.mileage
         }
-        else if(Date.parse(gig.date) >= Date.parse("04/01/2021") && Date.parse(gig.date) <= Date.parse("06/30/2021")) {
+        else if(Date.parse(gig.date) >= Date.parse(`04/01/${totalsYear}`) && Date.parse(gig.date) <= Date.parse(`06/30/${totalsYear}`)) {
             sumOfGigsQuarter2 += gig.gigPay
             totalOfMilesQuarter2 += gig.mileage
         }
-        else if(Date.parse(gig.date) >= Date.parse("07/01/2021") && Date.parse(gig.date) <= Date.parse("09/30/2021")) {
+        else if(Date.parse(gig.date) >= Date.parse(`07/01/${totalsYear}`) && Date.parse(gig.date) <= Date.parse(`09/30/${totalsYear}`)) {
             sumOfGigsQuarter3 += gig.gigPay
             totalOfMilesQuarter3 += gig.mileage
         }
-        else if(Date.parse(gig.date) >= Date.parse("10/01/2021") && Date.parse(gig.date) <= Date.parse("12/31/2021")) {
+        else if(Date.parse(gig.date) >= Date.parse(`10/01/${totalsYear}`) && Date.parse(gig.date) <= Date.parse(`12/31/${totalsYear}`)) {
             sumOfGigsQuarter4 += gig.gigPay
             totalOfMilesQuarter4 += gig.mileage
         }
     }
 
-    for (const tour of currentUserTours) {
-        if(Date.parse(tour.dateEnd) >= Date.parse("01/01/2021") && Date.parse(tour.dateEnd) <= Date.parse("03/31/2021")) {
+    for (const tour of filteredTours) {
+        if(Date.parse(tour.dateEnd) >= Date.parse(`01/01/${totalsYear}`) && Date.parse(tour.dateEnd) <= Date.parse(`03/31/${totalsYear}`)) {
             sumOfToursQuarter1 += tour.numberOfGigs * tour.tourGigPay
             sumOfToursQuarter1 += tour.perDiem * (tour.travelDays + tour.numberOfGigs)
             sumOfToursQuarter1 += tour.travelDays * tour.travelDayPay
             totalOfMilesQuarter1 += tour.mileage
         }
-        else if(Date.parse(tour.dateEnd) >= Date.parse("04/01/2021") && Date.parse(tour.dateEnd) <= Date.parse("06/30/2021")) {
+        else if(Date.parse(tour.dateEnd) >= Date.parse(`04/01/${totalsYear}`) && Date.parse(tour.dateEnd) <= Date.parse(`06/30/${totalsYear}`)) {
             sumOfToursQuarter2 += tour.numberOfGigs * tour.tourGigPay
             sumOfToursQuarter2 += tour.perDiem * (tour.travelDays + tour.numberOfGigs)
             sumOfToursQuarter2 += tour.travelDays * tour.travelDayPay
             totalOfMilesQuarter2 += tour.mileage
         }
-        else if(Date.parse(tour.dateEnd) >= Date.parse("07/01/2021") && Date.parse(tour.dateEnd) <= Date.parse("09/30/2021")) {
+        else if(Date.parse(tour.dateEnd) >= Date.parse(`07/01/${totalsYear}`) && Date.parse(tour.dateEnd) <= Date.parse(`09/30/${totalsYear}`)) {
             sumOfToursQuarter3 += tour.numberOfGigs * tour.tourGigPay
             sumOfToursQuarter3 += tour.perDiem * (tour.travelDays + tour.numberOfGigs)
             sumOfToursQuarter3 += tour.travelDays * tour.travelDayPay
             totalOfMilesQuarter3 += tour.mileage
         }
-        else if(Date.parse(tour.dateEnd) >= Date.parse("10/01/2021") && Date.parse(tour.dateEnd) <= Date.parse("12/31/2021")) {
+        else if(Date.parse(tour.dateEnd) >= Date.parse(`10/01/${totalsYear}`) && Date.parse(tour.dateEnd) <= Date.parse(`12/31/${totalsYear}`)) {
             sumOfToursQuarter4 += tour.numberOfGigs * tour.tourGigPay
             sumOfToursQuarter4 += tour.perDiem * (tour.travelDays + tour.numberOfGigs)
             sumOfToursQuarter4 += tour.travelDays * tour.travelDayPay
@@ -113,7 +146,6 @@ export const QuarterlyTotal = () => {
     let totalTaxOwedQuarter2 = ((sumOfGigsQuarter2 + sumOfToursQuarter2 - sumOfReceiptsQuarter2 - totalMileDeductionQuarter2) * .153).toLocaleString('en-US', {style: 'currency', currency: 'USD'})
     let totalTaxOwedQuarter3 = ((sumOfGigsQuarter3 + sumOfToursQuarter3 - sumOfReceiptsQuarter3 - totalMileDeductionQuarter3) * .153).toLocaleString('en-US', {style: 'currency', currency: 'USD'})
     let totalTaxOwedQuarter4 = ((sumOfGigsQuarter4 + sumOfToursQuarter4 - sumOfReceiptsQuarter4 - totalMileDeductionQuarter4) * .153).toLocaleString('en-US', {style: 'currency', currency: 'USD'})
-    
 
     return (
         <>

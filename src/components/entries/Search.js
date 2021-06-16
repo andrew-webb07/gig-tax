@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
-import { GigContext } from "./gig/GigProvider"
-import { ReceiptContext } from "./receipt/ReceiptProvider"
-import { TourContext } from "./tour/TourProvider"
+import { GigContext } from "../gig/GigProvider"
+import { ReceiptContext } from "../receipt/ReceiptProvider"
+import { TourContext } from "../tour/TourProvider"
 
 
 export const Search = () => {
