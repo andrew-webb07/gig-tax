@@ -24,7 +24,7 @@ export const GigProvider = (props) => {
     }
 
     const deleteGig = gigId => {
-        return fetch(`http://localhost:8088/Gigs/${gigId}`, {
+        return fetch(`http://localhost:8088/gigs/${gigId}`, {
             method: "DELETE"
         })
             .then(getGigs)
@@ -36,7 +36,7 @@ export const GigProvider = (props) => {
     }
 
     const updateGig = gig => {
-        return fetch(`http://localhost:8088/Gigs/${gig.id}`, {
+        return fetch(`http://localhost:8088/gigs/${gig.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json"

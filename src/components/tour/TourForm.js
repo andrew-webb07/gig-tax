@@ -198,7 +198,7 @@ export const TourForm = () => {
           </fieldset>
           <fieldset>
             <div className="form-group">
-              <label htmlFor="dateStart">Start Date: </label>
+              <label htmlFor="dateStart">Tour Start Date: </label>
               <input type="date" id="dateStart" name="dateStart" required autoFocus className="form-control"
               placeholder="Start Date"
               onChange={handleControlledInputChange}
@@ -207,9 +207,9 @@ export const TourForm = () => {
           </fieldset>
           <fieldset>
             <div className="form-group">
-              <label htmlFor="dateEnd">Start End: </label>
+              <label htmlFor="dateEnd">Tour End Date: </label>
               <input type="date" id="dateEnd" name="dateEnd" required autoFocus className="form-control"
-              placeholder="End Date"
+              placeholder="Tour End Date"
               onChange={handleControlledInputChange}
               value={tour.dateEnd}/>
             </div>
