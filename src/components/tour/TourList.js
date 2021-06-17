@@ -26,7 +26,7 @@ export const TourList = () => {
       }, [searchTerms, tours])
 
       useEffect(() => {
-        if (entriesYear !== "") {
+        if (entriesYear !== "" && entriesYear !== "year") {
           const subset = currentUserTours.filter(tour => Date.parse(tour.dateEnd) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(tour.dateEnd) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))
           setFiltered(subset)
         } else {

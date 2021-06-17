@@ -26,7 +26,7 @@ export const ReceiptList = () => {
       }, [searchTerms, receipts])
 
       useEffect(() => {
-        if (entriesYear !== "") {
+        if (entriesYear !== "" && entriesYear !== "year") {
           const subset = currentUserReceipts.filter(receipt => Date.parse(receipt.date) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(receipt.date) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))
           setFiltered(subset)
         } else {
