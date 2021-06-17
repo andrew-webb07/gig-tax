@@ -26,7 +26,7 @@ export const GigList = () => {
       }, [searchTerms, gigs])
 
       useEffect(() => {
-        if (entriesYear !== "") {
+        if (entriesYear !== "" && entriesYear !== "year") {
           const subset = currentUserGigs.filter(gig => Date.parse(gig.date) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(gig.date) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))
           setFiltered(subset)
         } else {
