@@ -44,6 +44,7 @@ export const Register = (props) => {
                         .then(createdUser => {
                             if (createdUser.hasOwnProperty("id")) {
                                 localStorage.setItem("gig-tax_user", createdUser.id)
+                                localStorage.setItem("gig-tax_user_address", createdUser.address)
                                 history.push("/")
                             }
                         })

@@ -17,6 +17,7 @@ import { QuarterlyTotal } from "./total/QuarterlyTotal"
 import { Search } from "./entries/Search"
 import { YearDropDownEntries } from "./entries/YearDropDownEntries"
 import { YearDropDownTotals } from "./entries/YearDropDownTotals"
+import { DistanceProvider } from "./distance/DistanceProvider"
 
 export const ApplicationViews = () => {
     return (
@@ -24,6 +25,7 @@ export const ApplicationViews = () => {
         <ReceiptProvider>
             <GigProvider>
                 <TourProvider>
+                    <DistanceProvider>
                     <Route exact path="/">
                         <LandingPage />
                     </Route>
@@ -69,7 +71,7 @@ export const ApplicationViews = () => {
                             <QuarterlyTotal />
                         </div>
                     </Route>
-
+                    </DistanceProvider>
                 </TourProvider>
             </GigProvider>
         </ReceiptProvider>

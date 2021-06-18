@@ -17,6 +17,7 @@
     background-color: rgb(78, 78, 78);
     box-shadow: black .2em .2em .2em;
     color: white;
+    padding: 0em 4em;
   }
 
   .gig__item {

@@ -6,11 +6,11 @@ import { useHistory } from "react-router-dom"
 export const GigList = () => {
     const { gigs, getGigs, deleteGig, searchTerms, entriesYear } = useContext(GigContext)
 
-    const [ filteredGigs, setFiltered ] = useState([])
-
     const history = useHistory()
     const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
     const currentUserGigs = gigs.filter(gig => gig.userId === currentGigTaxUserId)
+
+    const [ filteredGigs ,setFiltered] = useState([])
 
     useEffect(() => {
         getGigs()

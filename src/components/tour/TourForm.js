@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from 'react-router-dom';
 import { TourContext } from "./TourProvider"
+import { DistanceContext } from "../distance/DistanceProvider";
 import "./Tour.css"
 
 export const TourForm = () => {
     const { addTour, getTourById, updateTour } = useContext(TourContext)
+    const { getStartAddressLatLng, getEndAddressLatLng, startAddressLat, startAddressLng } = useContext(DistanceContext)
 
     const [ tour, setTour ] = useState({
                     artist: "",
@@ -28,10 +30,35 @@ export const TourForm = () => {
 	  const history = useHistory();
     const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
 
+    useEffect(() => {
+      getStartAddressLatLng()
+    }, [])
+
     const handleControlledInputChange = (event) => {
         const newTour = { ...tour }
         newTour[event.target.id] = event.target.value
         setTour(newTour)
+      }
+
+      const getDistance = (endAddressLat, endAddressLng) => {
+        if ((startAddressLat == endAddressLat) && (startAddressLng == endAddressLng)) {
+          return 0;
+      }
+      else {
+          const radStartAddressLat = Math.PI * startAddressLat/180;
+          const radEndAddressLat = Math.PI * endAddressLat/180;
+          const theta = startAddressLng-endAddressLng;
+          const radtheta = Math.PI * theta/180;
+          let dist = Math.sin(radStartAddressLat) * Math.sin(radEndAddressLat) + Math.cos(radStartAddressLat) * Math.cos(radEndAddressLat) * Math.cos(radtheta);
+          if (dist > 1) {
+              dist = 1;
+          }
+          dist = Math.acos(dist);
+          dist = dist * 180/Math.PI;
+          // get the distance and multiply by 2 to account for drive to destination and back
+          dist = dist * 60 * 1.1515 * 2;
+          return dist;
+      }
       }
 
     const calculateTravelDays = (date1, date2, totalGigs) => {
@@ -43,13 +70,16 @@ export const TourForm = () => {
     }
 
     const handleSavetour = () => {
-        if (tour.artist === "" || tour.address1 === "" || tour.city === "" || tour.state === "" || tour.zipcode === "" || tour.tourDescription === "" || tour.numberOfGigs === "" || tour.perDiem === "" || tour.travelDayPay === "" || tour.dateStart === "" || tour.dateEnd === "" || tour.tourGigPay === "" || tour.mileage === "") {
+        if (tour.artist === "" || tour.address1 === "" || tour.city === "" || tour.state === "" || tour.zipcode === "" || tour.tourDescription === "" || tour.numberOfGigs === "" || tour.perDiem === "" || tour.travelDayPay === "" || tour.dateStart === "" || tour.dateEnd === "" || tour.tourGigPay === "") {
             window.alert("Please fill out the form completely")
-        } else if (Number.isInteger(parseInt(tour.tourGigPay)) === false || Number.isInteger(parseInt(tour.zipcode)) === false|| Number.isInteger(parseInt(tour.mileage)) === false || Number.isInteger(parseInt(tour.numberOfGigs)) === false || Number.isInteger(parseInt(tour.perDiem)) === false || Number.isInteger(parseInt(tour.travelDayPay)) === false) {
+        } else if (Number.isInteger(parseInt(tour.tourGigPay)) === false || Number.isInteger(parseInt(tour.zipcode)) === false || Number.isInteger(parseInt(tour.numberOfGigs)) === false || Number.isInteger(parseInt(tour.perDiem)) === false || Number.isInteger(parseInt(tour.travelDayPay)) === false) {
           window.alert("Please enter a number only")
       } else {
             setIsLoading(true)
             if(tourId) {
+              getEndAddressLatLng(`${tour.address1}, ${tour.city}, ${tour.state}, ${tour.zipcode}`)
+                .then((res) => {
+                  const tourDistance = getDistance(res.results[0].geometry.location.lat, res.results[0].geometry.location.lng)   
                 updateTour({
                   id: tour.id,
                   userId: currentGigTaxUserId,
@@ -63,10 +93,14 @@ export const TourForm = () => {
                   dateStart: tour.dateStart,
                   dateEnd: tour.dateEnd,
                   tourGigPay: parseFloat(tour.tourGigPay),
-                  mileage: parseInt(Math.round(tour.mileage))
+                  mileage: parseInt(Math.round(tourDistance))
                 })
                 .then(() => history.push(`/entries`))
+                })
             } else {
+              getEndAddressLatLng(`${tour.address1}, ${tour.city}, ${tour.state}, ${tour.zipcode}`)
+                .then((res) => {
+                  const tourDistance = getDistance(res.results[0].geometry.location.lat, res.results[0].geometry.location.lng)
                 addTour({
                   userId: currentGigTaxUserId,
                   artist: tour.artist,
@@ -79,9 +113,10 @@ export const TourForm = () => {
                   dateStart: tour.dateStart,
                   dateEnd: tour.dateEnd,
                   tourGigPay: parseFloat(tour.tourGigPay),
-                  mileage: parseInt(Math.round(tour.mileage))
+                  mileage: parseInt(Math.round(tourDistance))
                 })
                 .then(() => history.push("/entries"))
+              })
             }
         }
     }
@@ -223,7 +258,7 @@ export const TourForm = () => {
               value={tour.tourGigPay}/>
             </div>
           </fieldset>
-          <fieldset>
+          {/* <fieldset>
             <div className="form-group">
               <label htmlFor="mileage">Miles Driven to Departure Address: </label>
               <input type="text" id="mileage" name="mileage" autoFocus className="form-control"
@@ -231,7 +266,7 @@ export const TourForm = () => {
               onChange={handleControlledInputChange}
               value={tour.mileage}/>
             </div>
-          </fieldset>
+          </fieldset> */}
           <button className="btn btn-primary"
             disabled={isLoading}
             onClick={event => {
