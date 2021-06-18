@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from 'react-router-dom';
 import { GigContext } from "./GigProvider"
 import "./Gig.css"
+import { DistanceContext } from "../distance/DistanceProvider";
 
 export const GigForm = () => {
     const { addGig, getGigById, updateGig } = useContext(GigContext)
+    const { getStartAddressLatLng, getEndAddressLatLng, startAddressLat, startAddressLng } = useContext(DistanceContext)
 
     const [ gig, setGig ] = useState({
                     artist: "",
@@ -21,23 +23,51 @@ export const GigForm = () => {
 
     const [isLoading, setIsLoading] = useState(true);
     const {gigId} = useParams();
-	const history = useHistory();
+	  const history = useHistory();
     const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
+
+    useEffect(() => {
+      getStartAddressLatLng()
+    }, [])
 
     const handleControlledInputChange = (event) => {
         const newGig = { ...gig }
         newGig[event.target.id] = event.target.value
         setGig(newGig)
+    }
+
+      const getDistance = (endAddressLat, endAddressLng) => {
+        if ((startAddressLat == endAddressLat) && (startAddressLng == endAddressLng)) {
+          return 0;
+      }
+      else {
+          const radStartAddressLat = Math.PI * startAddressLat/180;
+          const radEndAddressLat = Math.PI * endAddressLat/180;
+          const theta = startAddressLng-endAddressLng;
+          const radtheta = Math.PI * theta/180;
+          let dist = Math.sin(radStartAddressLat) * Math.sin(radEndAddressLat) + Math.cos(radStartAddressLat) * Math.cos(radEndAddressLat) * Math.cos(radtheta);
+          if (dist > 1) {
+              dist = 1;
+          }
+          dist = Math.acos(dist);
+          dist = dist * 180/Math.PI;
+          // get the distance and multiply by 2 to account for drive to destination and back
+          dist = dist * 60 * 1.1515 * 2;
+          return dist;
+      }
       }
 
     const handleSaveGig = () => {
-        if (gig.artist === "" || gig.locationName === "" || gig.address1 === "" || gig.city === "" || gig.state === "" || gig.zipcode === "" || gig.gigDescription === "" || gig.date === "" || gig.gigPay === "" || gig.mileage === "") {
+        if (gig.artist === "" || gig.locationName === "" || gig.address1 === "" || gig.city === "" || gig.state === "" || gig.zipcode === "" || gig.gigDescription === "" || gig.date === "" || gig.gigPay === "") {
             window.alert("Please fill out the form completely")
-        } else if (Number.isInteger(parseInt(gig.gigPay)) === false || Number.isInteger(parseInt(gig.zipcode)) === false|| Number.isInteger(parseInt(gig.mileage)) === false) {
+        } else if (Number.isInteger(parseInt(gig.gigPay)) === false || Number.isInteger(parseInt(gig.zipcode)) === false) {
             window.alert("Please enter a number only")
         } else {
             setIsLoading(true)
             if(gigId) {
+                getEndAddressLatLng(`${gig.address1}, ${gig.city}, ${gig.state}, ${gig.zipcode}`)
+                .then((res) => {
+                  const gigDistance = getDistance(res.results[0].geometry.location.lat, res.results[0].geometry.location.lng)              
                 updateGig({
                     id: gig.id,
                     userId: currentGigTaxUserId,
@@ -47,10 +77,14 @@ export const GigForm = () => {
                     gigDescription: gig.gigDescription,
                     date: gig.date,
                     gigPay: parseFloat(gig.gigPay),
-                    mileage: parseInt(Math.round(gig.mileage))
+                    mileage: parseInt(Math.round(gigDistance))
                 })
                 .then(() => history.push(`/entries`))
+            })
             } else {
+              getEndAddressLatLng(`${gig.address1}, ${gig.city}, ${gig.state}, ${gig.zipcode}`)
+                .then((res) => {
+                  const gigDistance = getDistance(res.results[0].geometry.location.lat, res.results[0].geometry.location.lng)
                 addGig({
                     userId: currentGigTaxUserId,
                     artist: gig.artist,
@@ -59,12 +93,13 @@ export const GigForm = () => {
                     gigDescription: gig.gigDescription,
                     date: gig.date,
                     gigPay: parseFloat(gig.gigPay),
-                    mileage: parseInt(Math.round(gig.mileage))
+                    mileage: parseInt(Math.round(gigDistance))
                 })
                 .then(() => history.push("/entries"))
+              })
             }
         }
-    }
+      }
 
     useEffect(() => {
         if (gigId) {
@@ -167,7 +202,7 @@ export const GigForm = () => {
               value={gig.gigPay}/>
             </div>
           </fieldset>
-          <fieldset>
+          {/* <fieldset>
             <div className="form-group">
               <label htmlFor="mileage">Miles Driven: </label>
               <input type="text" id="mileage" name="mileage" autoFocus className="form-control"
@@ -175,7 +210,7 @@ export const GigForm = () => {
               onChange={handleControlledInputChange}
               value={gig.mileage}/>
             </div>
-          </fieldset>
+          </fieldset> */}
           <button className="btn btn-primary"
             disabled={isLoading}
             onClick={event => {
