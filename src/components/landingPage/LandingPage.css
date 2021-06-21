@@ -5,9 +5,15 @@
 
 .gigTax-button {
     padding: 1em 3em;
+    border: .2em black solid;
     margin: 2em 0em;
-    background-color: rgb(78, 78, 78);
+    background-color: rgb(121, 121, 121);
     box-shadow: black .2em .2em .2em;
     color: white;
     font-size: large;
+}
+
+.logoContainer {
+    display: flex;
+    justify-content: center;
 }

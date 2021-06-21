@@ -4,7 +4,6 @@
 
 fieldset {
     min-width: 0;
-    padding: 1rem 0;
     margin: 0;
     border: 0;
 }
@@ -24,7 +23,7 @@ fieldset {
     display: inline-block;
 }
 
-.form-control {
+.login-form-control {
     display: block;
     width: 94%;
     height: calc(1.5em + .75rem + 2px);

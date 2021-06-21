@@ -67,23 +67,23 @@ export const Register = (props) => {
                 <h1 className="h3 mb-3 font-weight-normal">Please Register for Gig Tax</h1>
                 <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>
-                    <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
+                    <input ref={email} type="email" name="email" className="login-form-control" placeholder="Email address" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="address"> Address </label>
-                    <input ref={address} type="address" name="address" className="form-control" placeholder="Address" required />
+                    <input ref={address} type="address" name="address" className="login-form-control" placeholder="Address" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="city"> City </label>
-                    <input ref={city} type="city" name="city" className="form-control" placeholder="City"  required />
+                    <input ref={city} type="city" name="city" className="login-form-control" placeholder="City"  required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="state"> State </label>
-                    <input ref={state} type="state" name="state" className="form-control" placeholder="State"  required />
+                    <input ref={state} type="state" name="state" className="login-form-control" placeholder="State"  required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="zipCode"> Zip Code </label>
-                    <input ref={zipCode} type="zipCode" name="zipCode" className="form-control" placeholder="Zip Code"  required />
+                    <input ref={zipCode} type="zipCode" name="zipCode" className="login-form-control" placeholder="Zip Code"  required />
                 </fieldset>
                 <fieldset>
                     <button type="submit"> Sign in </button>
