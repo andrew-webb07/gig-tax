@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import { GigContext } from "../gig/GigProvider"
 import { ReceiptContext } from "../receipt/ReceiptProvider"
 import { TourContext } from "../tour/TourProvider"
+import "./SearchDropDown.css"
 
 
 export const Search = () => {
@@ -11,15 +12,17 @@ export const Search = () => {
 
   return (
     <>
-      Search:
-      <input type="text"
-        className="btn input--wide"
-        onKeyUp={(event) => {
-            setGigSearchTerms(event.target.value)
-            setTourSearchTerms(event.target.value)
-            setReceiptSearchTerms(event.target.value)
-        }}
-        placeholder="Search... " />
+      <div className="searchWrapper">
+        Search:
+        <input type="text"
+          className="btn search"
+          onKeyUp={(event) => {
+              setGigSearchTerms(event.target.value)
+              setTourSearchTerms(event.target.value)
+              setReceiptSearchTerms(event.target.value)
+          }}
+          placeholder="Search... " />
+      </div> 
     </>
   )
 }
