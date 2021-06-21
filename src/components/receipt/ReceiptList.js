@@ -11,6 +11,7 @@ export const ReceiptList = () => {
     const history = useHistory()
     const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
     const currentUserReceipts = receipts.filter(receipt => receipt.userId === currentGigTaxUserId)
+    const sortedUserReceipts = currentUserReceipts.sort((receipt1, receipt2) => (Date.parse(receipt2.date) - Date.parse(receipt1.date)))
 
     useEffect(() => {
         getReceipts()
@@ -18,19 +19,19 @@ export const ReceiptList = () => {
 
     useEffect(() => {
         if (searchTerms !== "") {
-          const subset = currentUserReceipts.filter(receipt => receipt.businessName.toLowerCase().includes(searchTerms.toLowerCase()))
+          const subset = sortedUserReceipts.filter(receipt => receipt.businessName.toLowerCase().includes(searchTerms.toLowerCase()))
           setFiltered(subset)
         } else {
-          setFiltered(currentUserReceipts)
+          setFiltered(sortedUserReceipts)
         }
       }, [searchTerms, receipts])
 
       useEffect(() => {
         if (entriesYear !== "" && entriesYear !== "year") {
-          const subset = currentUserReceipts.filter(receipt => Date.parse(receipt.date) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(receipt.date) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))
+          const subset = sortedUserReceipts.filter(receipt => Date.parse(receipt.date) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(receipt.date) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))
           setFiltered(subset)
         } else {
-          setFiltered(currentUserReceipts)
+          setFiltered(sortedUserReceipts)
         }
       }, [entriesYear, receipts])
 
