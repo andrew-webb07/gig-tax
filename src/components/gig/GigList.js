@@ -9,6 +9,7 @@ export const GigList = () => {
     const history = useHistory()
     const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
     const currentUserGigs = gigs.filter(gig => gig.userId === currentGigTaxUserId)
+    const sortedUserGigs = currentUserGigs.sort((gig1, gig2) => (Date.parse(gig2.date) - Date.parse(gig1.date)))
 
     const [ filteredGigs ,setFiltered] = useState([])
 
@@ -18,19 +19,19 @@ export const GigList = () => {
 
     useEffect(() => {
         if (searchTerms !== "") {
-          const subset = currentUserGigs.filter(gig => gig.artist.toLowerCase().includes(searchTerms.toLowerCase()) || gig.locationName.toLowerCase().includes(searchTerms.toLowerCase()))
+          const subset = sortedUserGigs.filter(gig => gig.artist.toLowerCase().includes(searchTerms.toLowerCase()) || gig.locationName.toLowerCase().includes(searchTerms.toLowerCase()))
           setFiltered(subset)
         } else {
-          setFiltered(currentUserGigs)
+          setFiltered(sortedUserGigs)
         }
       }, [searchTerms, gigs])
 
       useEffect(() => {
         if (entriesYear !== "" && entriesYear !== "year") {
-          const subset = currentUserGigs.filter(gig => Date.parse(gig.date) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(gig.date) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))
+          const subset = sortedUserGigs.filter(gig => Date.parse(gig.date) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(gig.date) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))
           setFiltered(subset)
         } else {
-          setFiltered(currentUserGigs)
+          setFiltered(sortedUserGigs)
         }
       }, [entriesYear, gigs])
 

@@ -11,6 +11,7 @@ export const TourList = () => {
     const history = useHistory()
     const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
     const currentUserTours = tours.filter(tour => tour.userId === currentGigTaxUserId)
+    const sortedUserTours = currentUserTours.sort((tour1, tour2) => (Date.parse(tour2.dateEnd) - Date.parse(tour1.dateEnd)))
 
     useEffect(() => {
         getTours()
@@ -18,19 +19,19 @@ export const TourList = () => {
 
     useEffect(() => {
         if (searchTerms !== "") {
-          const subset = currentUserTours.filter(tour => tour.artist.toLowerCase().includes(searchTerms.toLowerCase()) || tour.tourDescription.toLowerCase().includes(searchTerms.toLowerCase()))
+          const subset = sortedUserTours.filter(tour => tour.artist.toLowerCase().includes(searchTerms.toLowerCase()) || tour.tourDescription.toLowerCase().includes(searchTerms.toLowerCase()))
           setFiltered(subset)
         } else {
-          setFiltered(currentUserTours)
+          setFiltered(sortedUserTours)
         }
       }, [searchTerms, tours])
 
       useEffect(() => {
         if (entriesYear !== "" && entriesYear !== "year") {
-          const subset = currentUserTours.filter(tour => Date.parse(tour.dateEnd) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(tour.dateEnd) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))
+          const subset = sortedUserTours.filter(tour => Date.parse(tour.dateEnd) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(tour.dateEnd) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))
           setFiltered(subset)
         } else {
-          setFiltered(currentUserTours)
+          setFiltered(sortedUserTours)
         }
       }, [entriesYear, tours])
 
@@ -44,7 +45,7 @@ export const TourList = () => {
                             <div className="tour" id={`tour--${tour.id}`}>
                                 <div className="tour__item">Artist: {tour.artist}</div>
                                 <div className="tour__item">Description: {tour.tourDescription}</div>
-                                <div className="tour__item">Number Of Gigs: {tour.numberOfGigs}</div>
+                                <div className="tour__item">Number Of Tours: {tour.numberOfTours}</div>
                                 <div className="tour__item">Per Diem: ${tour.perDiem}</div>
                                 <div className="tour__item">Number of Travel Days: {tour.travelDays}</div>
                                 <div className="tour__item">Travel Day Pay: ${tour.travelDayPay}</div>
