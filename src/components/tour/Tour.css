@@ -1,7 +1,6 @@
 .tours {
     display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
     justify-content: space-between;
     flex-basis: 31%;
   }
@@ -24,6 +23,20 @@
       color: white;
   }
 
+  .tourForm {
+    margin: 2em 15em 15em 15em;
+    padding: 1em 5em;
+    background-color: rgb(78, 78, 78);
+    box-shadow: black .7em .7em .7em;
+  }
+
+  .tourForm__title {
+    color: white;
+  }
+
   .btn {
       text-align: center;
+      margin: 1em;
+      padding: 1em 3em;
+      box-shadow: black 0 0 .5em;
   }
