@@ -1,7 +1,6 @@
 .receipts {
     display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
     justify-content: space-between;
     flex-basis: 31%;
   }
@@ -24,6 +23,13 @@
       color: white;
   }
 
-  .btn {
-      text-align: center;
+  .receiptForm {
+    margin: 2em 15em 15em 15em;
+    padding: 1em 5em;
+    background-color: rgb(78, 78, 78);
+    box-shadow: black .7em .7em .7em;
+  }
+
+  .receiptForm__title {
+    color: white;
   }

@@ -267,13 +267,15 @@ export const TourForm = () => {
               value={tour.mileage}/>
             </div>
           </fieldset> */}
-          <button className="btn btn-primary"
-            disabled={isLoading}
-            onClick={event => {
-              event.preventDefault() // Prevent browser from submitting the form and refreshing the page
-              handleSavetour()
-            }}>
-          {tourId ? <>Update tour</> : <>Add tour</>}</button>
+          <div className="formButtonContainer">
+            <button className="btn btn-primary"
+              disabled={isLoading}
+              onClick={event => {
+                event.preventDefault() // Prevent browser from submitting the form and refreshing the page
+                handleSavetour()
+              }}>
+            {tourId ? <>Update tour</> : <>Add tour</>}</button>
+          </div>
         </form>
       )
 }

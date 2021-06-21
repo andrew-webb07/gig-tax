@@ -1,7 +1,6 @@
 .gigs {
     display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
     justify-content: space-between;
     flex-basis: 31%;
   }
@@ -18,8 +17,6 @@
     background-color: rgb(78, 78, 78);
     box-shadow: black .2em .2em .2em;
     color: white;
-    padding: auto;
-    width: 100%
   }
 
   .gig__item {
@@ -27,15 +24,20 @@
   }
 
   .gigForm {
-    border:rgb(78, 78, 78) solid .2em;
-    margin: 2em 10em 10em 10em;
-    padding: 0em 2em;
+    margin: 2em 15em 15em 15em;
+    padding: 1em 5em;
     background-color: rgb(78, 78, 78);
+    box-shadow: black .7em .7em .7em;
+  }
+
+  .gigForm__title {
+    color: white
   }
 
   .btn {
       text-align: center;
       margin: 1em;
+      padding: 1em 3em;
   }
 
   .form-group {
@@ -47,8 +49,13 @@
     border: .1em solid grey;
     border-radius: .3em;
     /* height: 1.5em; */
-    width: 20%;
+    width: 94%;
     padding: 2px 23px 2px 30px;
     outline: 0;
     background-color: #f5f5f5;
+  }
+
+  .formButtonContainer {
+    display: flex;
+    justify-content: center;
   }

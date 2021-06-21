@@ -211,13 +211,15 @@ export const GigForm = () => {
               value={gig.mileage}/>
             </div>
           </fieldset> */}
-          <button className="btn btn-primary"
-            disabled={isLoading}
-            onClick={event => {
-              event.preventDefault() // Prevent browser from submitting the form and refreshing the page
-              handleSaveGig()
-            }}>
-          {gigId ? <>Update Gig</> : <>Add Gig</>}</button>
+          <div className="formButtonContainer">
+            <button className="btn btn-primary"
+              disabled={isLoading}
+              onClick={event => {
+                event.preventDefault() // Prevent browser from submitting the form and refreshing the page
+                handleSaveGig()
+              }}>
+            {gigId ? <>Update Gig</> : <>Add Gig</>}</button>
+          </div>
         </form>
       )
 }

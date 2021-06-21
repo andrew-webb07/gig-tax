@@ -165,13 +165,15 @@ export const ReceiptForm = () => {
               value={receipt.receiptNumber}/>
             </div>
           </fieldset>
-          <button className="btn btn-primary"
-            disabled={isLoading}
-            onClick={event => {
-              event.preventDefault() // Prevent browser from submitting the form and refreshing the page
-              handleSaveReceipt()
-            }}>
-          {receiptId ? <>Update receipt</> : <>Add receipt</>}</button>
+          <div className="formButtonContainer">
+            <button className="btn btn-primary"
+              disabled={isLoading}
+              onClick={event => {
+                event.preventDefault() // Prevent browser from submitting the form and refreshing the page
+                handleSaveReceipt()
+              }}>
+            {receiptId ? <>Update receipt</> : <>Add receipt</>}</button>
+          </div>
         </form>
       )
   
