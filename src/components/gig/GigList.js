@@ -14,7 +14,10 @@ export const GigList = () => {
     const [ filteredGigs ,setFiltered] = useState([])
 
     useEffect(() => {
-        getGigs()
+      getGigs()
+      // navigation.addListener('state', () => {
+      //   setFiltered(sortedUserGigs)
+      // })
     }, [])
 
     useEffect(() => {
@@ -34,6 +37,7 @@ export const GigList = () => {
           setFiltered(sortedUserGigs)
         }
       }, [entriesYear, gigs])
+
 
     return (
         <>

@@ -19,7 +19,7 @@ export const YearTotal = () => {
 
     useEffect(() => {
         if (totalsYear !== "year" && totalsYear !== "") {
-          const subset = currentUserReceipts.filter(receipt => Date.parse(receipt.date) >= Date.parse(`01/01/${totalsYear}`) && Date.parse(receipt.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
+          const subset = currentUserReceipts.filter(receipt => Date.parse(receipt.date) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(receipt.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
           setFilteredReceipts(subset)
         } else {
           setFilteredReceipts(currentUserReceipts)
@@ -28,7 +28,7 @@ export const YearTotal = () => {
 
       useEffect(() => {
         if (totalsYear !== "year" && totalsYear !== "") {
-          const subset = currentUserGigs.filter(gig => Date.parse(gig.date) >= Date.parse(`01/01/${totalsYear}`) && Date.parse(gig.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
+          const subset = currentUserGigs.filter(gig => Date.parse(gig.date) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(gig.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
           setFilteredGigs(subset)
         } else {
           setFilteredGigs(currentUserGigs)
@@ -37,7 +37,7 @@ export const YearTotal = () => {
 
       useEffect(() => {
         if (totalsYear !== "year" && totalsYear !== "") {
-          const subset = currentUserTours.filter(tour => Date.parse(tour.dateEnd) >= Date.parse(`01/01/${totalsYear}`) && Date.parse(tour.dateEnd) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
+          const subset = currentUserTours.filter(tour => Date.parse(tour.dateEnd) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(tour.dateEnd) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
           setFilteredTours(subset)
         } else {
           setFilteredTours(currentUserTours)
@@ -85,8 +85,9 @@ export const YearTotal = () => {
             <div className="yearTotalBox">
                 <h2>Total Amount Made</h2>
                 <div className="yearTotalBox__item">${totalAmountMade}</div>
+                {/* <br></br>
                 <div className="yearTotalBox__item">(Total of Gigs: ${sumOfGigs})</div>
-                <div className="yearTotalBox__item">(Total of Tours: ${sumOfTours})</div>
+                <div className="yearTotalBox__item">(Total of Tours: ${sumOfTours})</div> */}
             </div>
             <div className="yearTotalBox">
                 <h2>Total Miles Driven</h2>

@@ -8,22 +8,12 @@ fieldset {
     border: 0;
 }
 
-.form--login {
-    display: inline-block;
-    margin: 0 auto;
-    text-align: left;
-}
-
-.form--login > fieldset > input[type="email"] {
-    width: 25em;
-}
-
 .label--login {
     width: 8rem;
     display: inline-block;
 }
 
-.login-form-control {
+/* .login-form-control {
     display: block;
     width: 94%;
     height: calc(1.5em + .75rem + 2px);
@@ -38,21 +28,44 @@ fieldset {
     border-radius: .25rem;
     -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
+} */
 
 .container--login {
     text-align: center;
 }
 
 .form--login {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: left;
     background-position-x: right;
     /* background-image: url(logo.png); */
     z-index: 1;
     min-height: 25rem;
     min-width: 45rem;
-    background-color: hsla(0,0%,100%,0.40);
+    background-color: rgb(78, 78, 78, .9);
+    box-shadow: black .7em .7em .7em;
     background-blend-mode: overlay;
     background-repeat: no-repeat;
+    color: white;
+    margin: 2em;
+}
+.form--register {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: left;
+    background-position-x: right;
+    /* background-image: url(logo.png); */
+    z-index: 1;
+    min-height: 25rem;
+    min-width: 45rem;
+    padding: 3em;
+    background-color: rgb(78, 78, 78, .9);
+    box-shadow: black .7em .7em .7em;
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    color: white;
+    margin: 2em;
 }
 
 .button--close {
@@ -65,3 +78,22 @@ fieldset {
     min-height: 5rem;
 }
 
+.link--register {
+    color: white;
+}
+
+.link--register__text {
+    color: white;
+    font-size: larger;
+}
+
+.login-buttons {
+    margin: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+.login-email {
+    margin-left: 8em;
+    width: 25em;
+}

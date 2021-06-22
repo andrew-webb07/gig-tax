@@ -9,7 +9,7 @@
     flex-basis: 28%;
     margin: 1em;
     padding: 1em;
-    background-color: rgb(78, 78, 78);
+    background-color: rgb(78, 78, 78, .9);
     box-shadow: black .2em .2em .2em;
   }
 
@@ -26,7 +26,7 @@
   .gigForm {
     margin: 2em 15em 15em 15em;
     padding: 1em 5em;
-    background-color: rgb(78, 78, 78);
+    background-color: rgb(78, 78, 78, .9);
     box-shadow: black .7em .7em .7em;
   }
 
@@ -35,9 +35,10 @@
   }
 
   .btn {
-      text-align: center;
-      margin: 1em;
-      padding: 1em 3em;
+    text-align: center;
+    margin: 1em;
+    padding: 1em 3em;
+    box-shadow: black 0 0 .5em;
   }
 
   .form-group {
@@ -58,4 +59,17 @@
   .formButtonContainer {
     display: flex;
     justify-content: center;
+  }
+
+  .gig__buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 2em
+  }
+
+  .gig__button {
+    text-align: center;
+    margin: .5em;
+    padding: .5em 1.5em;
+    box-shadow: black 0 0 .2em;
   }
