@@ -45,22 +45,22 @@ export const Login = props => {
                 <form className="form--login" onSubmit={handleLogin}>
                     <h1>Gig Tax</h1>
                     <h2>Please sign in</h2>
-                    <fieldset>
-                        <label htmlFor="inputEmail"> Email address </label>
+                    <fieldset className="login-email">
+                        <label htmlFor="inputEmail"> Email address: </label>
                         <input ref={email} type="email"
                             id="email"
-                            className="login-form-control"
+                            className="form-control"
                             placeholder="Email address"
                             required autoFocus />
                     </fieldset>
-                    <fieldset>
-                        <button type="submit">Sign in</button>
-                        <button type="cancel" onClick={() => handleCancel()}> Cancel </button>
+                    <fieldset className="login-buttons">
+                        <button type="submit" className="btn">Sign in</button>
+                        <button type="cancel" className="btn" onClick={() => handleCancel()}> Cancel </button>
                     </fieldset>
                 </form>
             </section>
             <section className="link--register">
-                <Link to="/register">Not a member yet?</Link>
+                <Link to="/register" className="link--register__text">Not a member yet?</Link>
             </section>
         </main>
     )

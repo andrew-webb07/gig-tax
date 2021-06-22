@@ -1,10 +1,19 @@
 .totalsBoxes {
     display: flex;
     flex-direction: column;
-    margin: 1.5em 3em;
+    margin: 3em 6em;
     padding: 1em;
-    background-color: rgb(78, 78, 78);
-    box-shadow: black .2em .2em .2em;
+    background-color: rgb(167 167 167 / 70%);
+    box-shadow: black .7em .7em .7em;
+}
+
+.totalsBoxesQuarterly {
+  display: flex;
+  flex-direction: column;
+  margin: 3em 6em;
+  padding: 1em;
+  background-color: rgb(167 167 167 / 70%);
+  box-shadow: black .7em .7em .7em; 
 }
 
 .yearTotalBoxes {
@@ -15,11 +24,12 @@
   }
   
   .yearTotalBox {
-    flex-basis: 28%;
     margin: 1em;
-    padding: 2em;
-    background-color: white;
-    box-shadow: black .2em .2em .2em;
+    padding: 0em 2em 2em 2em;
+    /* background-color: white; */
+    background-color: rgb(78, 78, 78);
+    color: white;
+    box-shadow: black .7em .7em .7em;
   }
 
   .yearTotalBox__item {
@@ -31,15 +41,16 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    
   }
 
   .quarterlyTotalBox {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex-basis: 28%;
     margin: 1em;
     padding: 2em;
-    background-color: white;
-    box-shadow: black .2em .2em .2em;
+    background-color: rgb(78, 78, 78);
+    color: white;
+    box-shadow: black .7em .7em .7em;
   }

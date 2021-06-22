@@ -63,11 +63,11 @@ export const ApplicationViews = () => {
                     </Route>
 
                     <Route exact path="/totals">
-                        <div className="totalsBoxes">
-                            <YearDropDownTotals />
+                    <YearDropDownTotals />
+                        <div className="totalsBoxes">    
                             <YearTotal />
                         </div>
-                        <div className="totalsBoxes">
+                        <div className="totalsBoxesQuarterly">
                             <QuarterlyTotal />
                         </div>
                     </Route>

@@ -26,7 +26,7 @@ export const QuarterlyTotal = () => {
 
     useEffect(() => {
         if (totalsYear !== "year" && totalsYear !== "") {
-          const subset = currentUserReceipts.filter(receipt => Date.parse(receipt.date) >= Date.parse(`01/01/${totalsYear}`) && Date.parse(receipt.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
+          const subset = currentUserReceipts.filter(receipt => Date.parse(receipt.date) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(receipt.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
           setFilteredReceipts(subset)
         } else {
           setFilteredReceipts(currentUserReceipts)
@@ -35,7 +35,7 @@ export const QuarterlyTotal = () => {
 
       useEffect(() => {
         if (totalsYear !== "year" && totalsYear !== "") {
-          const subset = currentUserGigs.filter(gig => Date.parse(gig.date) >= Date.parse(`01/01/${totalsYear}`) && Date.parse(gig.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
+          const subset = currentUserGigs.filter(gig => Date.parse(gig.date) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(gig.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
           setFilteredGigs(subset)
         } else {
           setFilteredGigs(currentUserGigs)
@@ -44,7 +44,7 @@ export const QuarterlyTotal = () => {
 
       useEffect(() => {
         if (totalsYear !== "year" && totalsYear !== "") {
-          const subset = currentUserTours.filter(tour => Date.parse(tour.dateEnd) >= Date.parse(`01/01/${totalsYear}`) && Date.parse(tour.dateEnd) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
+          const subset = currentUserTours.filter(tour => Date.parse(tour.dateEnd) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(tour.dateEnd) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
           setFilteredTours(subset)
         } else {
           setFilteredTours(currentUserTours)
@@ -72,59 +72,59 @@ export const QuarterlyTotal = () => {
     let sumOfToursQuarter4 = 0
 
     for (const receipt of filteredReceipts) {
-        if(Date.parse(receipt.date) >= Date.parse(`01/01/${totalsYear}`) && Date.parse(receipt.date) <= Date.parse(`03/31/${totalsYear}`)) {
+        if(Date.parse(receipt.date) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(receipt.date) <= Date.parse(`03/31/${totalsYear}`)) {
             sumOfReceiptsQuarter1 += receipt.price
         }
-        else if(Date.parse(receipt.date) >= Date.parse(`04/01/${totalsYear}`) && Date.parse(receipt.date) <= Date.parse(`06/30/${totalsYear}`)) {
+        else if(Date.parse(receipt.date) > Date.parse(`03/31/${totalsYear}`) && Date.parse(receipt.date) <= Date.parse(`06/30/${totalsYear}`)) {
             sumOfReceiptsQuarter2 += receipt.price
         }
-        else if(Date.parse(receipt.date) >= Date.parse(`07/01/${totalsYear}`) && Date.parse(receipt.date) <= Date.parse(`09/30/${totalsYear}`)) {
+        else if(Date.parse(receipt.date) > Date.parse(`06/30/${totalsYear}`) && Date.parse(receipt.date) <= Date.parse(`09/30/${totalsYear}`)) {
             sumOfReceiptsQuarter3 += receipt.price
         }
-        else if(Date.parse(receipt.date) >= Date.parse(`10/01/${totalsYear}`) && Date.parse(receipt.date) <= Date.parse(`12/31/${totalsYear}`)) {
+        else if(Date.parse(receipt.date) > Date.parse(`09/30/${totalsYear}`) && Date.parse(receipt.date) <= Date.parse(`12/31/${totalsYear}`)) {
             sumOfReceiptsQuarter4 += receipt.price
         }
     }
 
     for (const gig of filteredGigs) {
-        if(Date.parse(gig.date) >= Date.parse(`01/01/${totalsYear}`) && Date.parse(gig.date) <= Date.parse(`03/31/${totalsYear}`)) {
+        if(Date.parse(gig.date) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(gig.date) <= Date.parse(`03/31/${totalsYear}`)) {
             sumOfGigsQuarter1 += gig.gigPay
             totalOfMilesQuarter1 += gig.mileage
         }
-        else if(Date.parse(gig.date) >= Date.parse(`04/01/${totalsYear}`) && Date.parse(gig.date) <= Date.parse(`06/30/${totalsYear}`)) {
+        else if(Date.parse(gig.date) > Date.parse(`03/31/${totalsYear}`) && Date.parse(gig.date) <= Date.parse(`06/30/${totalsYear}`)) {
             sumOfGigsQuarter2 += gig.gigPay
             totalOfMilesQuarter2 += gig.mileage
         }
-        else if(Date.parse(gig.date) >= Date.parse(`07/01/${totalsYear}`) && Date.parse(gig.date) <= Date.parse(`09/30/${totalsYear}`)) {
+        else if(Date.parse(gig.date) > Date.parse(`06/30/${totalsYear}`) && Date.parse(gig.date) <= Date.parse(`09/30/${totalsYear}`)) {
             sumOfGigsQuarter3 += gig.gigPay
             totalOfMilesQuarter3 += gig.mileage
         }
-        else if(Date.parse(gig.date) >= Date.parse(`10/01/${totalsYear}`) && Date.parse(gig.date) <= Date.parse(`12/31/${totalsYear}`)) {
+        else if(Date.parse(gig.date) > Date.parse(`09/30/${totalsYear}`) && Date.parse(gig.date) <= Date.parse(`12/31/${totalsYear}`)) {
             sumOfGigsQuarter4 += gig.gigPay
             totalOfMilesQuarter4 += gig.mileage
         }
     }
 
     for (const tour of filteredTours) {
-        if(Date.parse(tour.dateEnd) >= Date.parse(`01/01/${totalsYear}`) && Date.parse(tour.dateEnd) <= Date.parse(`03/31/${totalsYear}`)) {
+        if(Date.parse(tour.dateEnd) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(tour.dateEnd) <= Date.parse(`03/31/${totalsYear}`)) {
             sumOfToursQuarter1 += tour.numberOfGigs * tour.tourGigPay
             sumOfToursQuarter1 += tour.perDiem * (tour.travelDays + tour.numberOfGigs)
             sumOfToursQuarter1 += tour.travelDays * tour.travelDayPay
             totalOfMilesQuarter1 += tour.mileage
         }
-        else if(Date.parse(tour.dateEnd) >= Date.parse(`04/01/${totalsYear}`) && Date.parse(tour.dateEnd) <= Date.parse(`06/30/${totalsYear}`)) {
+        else if(Date.parse(tour.dateEnd) > Date.parse(`03/31/${totalsYear}`) && Date.parse(tour.dateEnd) <= Date.parse(`06/30/${totalsYear}`)) {
             sumOfToursQuarter2 += tour.numberOfGigs * tour.tourGigPay
             sumOfToursQuarter2 += tour.perDiem * (tour.travelDays + tour.numberOfGigs)
             sumOfToursQuarter2 += tour.travelDays * tour.travelDayPay
             totalOfMilesQuarter2 += tour.mileage
         }
-        else if(Date.parse(tour.dateEnd) >= Date.parse(`07/01/${totalsYear}`) && Date.parse(tour.dateEnd) <= Date.parse(`09/30/${totalsYear}`)) {
+        else if(Date.parse(tour.dateEnd) > Date.parse(`06/30/${totalsYear}`) && Date.parse(tour.dateEnd) <= Date.parse(`09/30/${totalsYear}`)) {
             sumOfToursQuarter3 += tour.numberOfGigs * tour.tourGigPay
             sumOfToursQuarter3 += tour.perDiem * (tour.travelDays + tour.numberOfGigs)
             sumOfToursQuarter3 += tour.travelDays * tour.travelDayPay
             totalOfMilesQuarter3 += tour.mileage
         }
-        else if(Date.parse(tour.dateEnd) >= Date.parse(`10/01/${totalsYear}`) && Date.parse(tour.dateEnd) <= Date.parse(`12/31/${totalsYear}`)) {
+        else if(Date.parse(tour.dateEnd) > Date.parse(`09/30/${totalsYear}`) && Date.parse(tour.dateEnd) <= Date.parse(`12/31/${totalsYear}`)) {
             sumOfToursQuarter4 += tour.numberOfGigs * tour.tourGigPay
             sumOfToursQuarter4 += tour.perDiem * (tour.travelDays + tour.numberOfGigs)
             sumOfToursQuarter4 += tour.travelDays * tour.travelDayPay

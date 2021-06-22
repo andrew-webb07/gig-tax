@@ -33,7 +33,7 @@ export const ReceiptForm = () => {
         if (receipt.businessName === "" || receipt.businessAddress1 === "" || receipt.businessCity === "" || receipt.businessState === "" || receipt.businessZipcode === "" || receipt.description === "" || receipt.date === "" || receipt.price === "" || receipt.receiptNumber === "") {
             window.alert("Please fill out the form completely")
         } 
-        else if (Number.isInteger(parseInt(receipt.price)) === false || Number.isInteger(parseInt(receipt.businessZipcode)) === false|| Number.isInteger(parseInt(receipt.receiptNumber)) === false) {
+        else if (Number.isInteger(parseInt(receipt.price)) === false || Number.isInteger(parseInt(receipt.businessZipcode)) === false) {
             window.alert("Please enter a number only")
         } else {
             setIsLoading(true)
