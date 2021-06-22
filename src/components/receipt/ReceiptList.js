@@ -4,7 +4,7 @@ import { ReceiptContext } from "./ReceiptProvider"
 import { useHistory } from "react-router-dom"
 
 export const ReceiptList = () => {
-    const { receipts, getReceipts, deleteReceipt, searchTerms, entriesYear} = useContext(ReceiptContext)
+    const { receipts, getReceipts, deleteReceipt, searchTerms, entriesYear, setReceiptSearchTerms, setReceiptYearEntries} = useContext(ReceiptContext)
 
     const [ filteredReceipts, setFiltered ] = useState([])
 
@@ -15,6 +15,8 @@ export const ReceiptList = () => {
 
     useEffect(() => {
         getReceipts()
+        setReceiptSearchTerms("")
+        setReceiptYearEntries("")
     }, [])
 
     useEffect(() => {
