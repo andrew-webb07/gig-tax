@@ -6,9 +6,9 @@ import "./Totals.css"
 
 export const YearTotal = () => {
 
-    const { receipts, getReceipts, totalsYear } = useContext(ReceiptContext)
-    const { tours, getTours } = useContext(TourContext)
-    const { gigs, getGigs } = useContext(GigContext)
+    const { receipts, getReceipts, totalsYear, setReceiptYear } = useContext(ReceiptContext)
+    const { tours, getTours, setTourYear } = useContext(TourContext)
+    const { gigs, getGigs, setGigYear } = useContext(GigContext)
     const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
     const currentUserReceipts = receipts.filter(receipt => receipt.userId === currentGigTaxUserId)
     const currentUserGigs = gigs.filter(gig => gig.userId === currentGigTaxUserId)
@@ -73,6 +73,9 @@ export const YearTotal = () => {
 
     useEffect(() => {
         getReceipts().then(getGigs).then(getTours)
+        setGigYear("")
+        setReceiptYear("")
+        setTourYear("")
     }, [])
 
     return (

@@ -4,7 +4,7 @@ import { GigContext } from "./GigProvider"
 import { useHistory } from "react-router-dom"
 
 export const GigList = () => {
-    const { gigs, getGigs, deleteGig, searchTerms, entriesYear } = useContext(GigContext)
+    const { gigs, getGigs, deleteGig, searchTerms, entriesYear, setGigYearEntries, setGigSearchTerms } = useContext(GigContext)
 
     const history = useHistory()
     const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
@@ -15,10 +15,13 @@ export const GigList = () => {
 
     useEffect(() => {
       getGigs()
-      // navigation.addListener('state', () => {
-      //   setFiltered(sortedUserGigs)
-      // })
+      setGigSearchTerms("")
+      setGigYearEntries("")
     }, [])
+
+    useEffect(() => {
+      setFiltered(sortedUserGigs)
+    }, [gigs])
 
     useEffect(() => {
         if (searchTerms !== "") {
