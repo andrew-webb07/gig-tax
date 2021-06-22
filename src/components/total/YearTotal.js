@@ -17,6 +17,7 @@ export const YearTotal = () => {
     const [ filteredGigs, setFilteredGigs ] = useState([])
     const [ filteredTours, setFilteredTours ] = useState([])
 
+    // filter receipts based on the year picked in the dropdown menu
     useEffect(() => {
         if (totalsYear !== "year" && totalsYear !== "") {
           const subset = currentUserReceipts.filter(receipt => Date.parse(receipt.date) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(receipt.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
@@ -26,6 +27,7 @@ export const YearTotal = () => {
         }
       }, [totalsYear, receipts])
 
+      // filter gigs based on the year picked in the dropdown menu
       useEffect(() => {
         if (totalsYear !== "year" && totalsYear !== "") {
           const subset = currentUserGigs.filter(gig => Date.parse(gig.date) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(gig.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
@@ -35,6 +37,7 @@ export const YearTotal = () => {
         }
       }, [totalsYear, gigs])
 
+      // filter tours based on the year picked in the dropdown menu
       useEffect(() => {
         if (totalsYear !== "year" && totalsYear !== "") {
           const subset = currentUserTours.filter(tour => Date.parse(tour.dateEnd) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(tour.dateEnd) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
@@ -66,9 +69,12 @@ export const YearTotal = () => {
             totalOfMiles += tour.mileage
         }
 
+        // Calculating the total miles tax deduction amount of money based on the standard mileage deduction rate per mile
         let totalMileDeduction = Math.floor(totalOfMiles * .575)
+
         let totalAmountMade = sumOfTours + sumOfGigs
 
+        // Calculating the total amount of tax money owed based on the current self-employment tax rate
         let totalYearTaxOwed = ((sumOfGigs + sumOfTours - sumOfReceipts - totalMileDeduction) * .153).toLocaleString('en-US', {style: 'currency', currency: 'USD'})
 
     useEffect(() => {

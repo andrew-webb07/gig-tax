@@ -26,51 +26,51 @@ export const ApplicationViews = () => {
             <GigProvider>
                 <TourProvider>
                     <DistanceProvider>
-                    <Route exact path="/">
-                        <LandingPage />
-                    </Route>
-                    
-                    <Route exact path="/gig/create">
-                        <GigForm/>
-                    </Route>
-                    <Route exact path="/gig/edit/:gigId(\d+)">
-                        <GigForm/>
-                    </Route>
+                        <Route exact path="/">
+                            <LandingPage />
+                        </Route>
+                        
+                        <Route exact path="/gig/create">
+                            <GigForm/>
+                        </Route>
+                        <Route exact path="/gig/edit/:gigId(\d+)">
+                            <GigForm/>
+                        </Route>
 
-                    <Route exact path="/tour/create">
-                        <TourForm/>
-                    </Route>
-                    <Route exact path="/tour/edit/:tourId(\d+)">
-                        <TourForm/>
-                    </Route>
+                        <Route exact path="/tour/create">
+                            <TourForm/>
+                        </Route>
+                        <Route exact path="/tour/edit/:tourId(\d+)">
+                            <TourForm/>
+                        </Route>
 
-                    <Route exact path="/receipt/create">
-                        <ReceiptForm/>
-                    </Route>
-                    <Route exact path="/receipt/edit/:receiptId(\d+)">
-                        <ReceiptForm/>
-                    </Route>
+                        <Route exact path="/receipt/create">
+                            <ReceiptForm/>
+                        </Route>
+                        <Route exact path="/receipt/edit/:receiptId(\d+)">
+                            <ReceiptForm/>
+                        </Route>
 
-                    <Route exact path="/entries">
-                        <Search/>
-                        <YearDropDownEntries />
+                        <Route exact path="/entries">
+                            <Search/>
+                            <YearDropDownEntries />
 
-                            <div className="entryLists">
-                                <GigList />
-                                <TourList />
-                                <ReceiptList />
+                                <div className="entryLists">
+                                    <GigList />
+                                    <TourList />
+                                    <ReceiptList />
+                                </div>
+                        </Route>
+
+                        <Route exact path="/totals">
+                        <YearDropDownTotals />
+                            <div className="totalsBoxes">    
+                                <YearTotal />
                             </div>
-                    </Route>
-
-                    <Route exact path="/totals">
-                    <YearDropDownTotals />
-                        <div className="totalsBoxes">    
-                            <YearTotal />
-                        </div>
-                        <div className="totalsBoxesQuarterly">
-                            <QuarterlyTotal />
-                        </div>
-                    </Route>
+                            <div className="totalsBoxesQuarterly">
+                                <QuarterlyTotal />
+                            </div>
+                        </Route>
                     </DistanceProvider>
                 </TourProvider>
             </GigProvider>

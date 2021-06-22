@@ -13,16 +13,14 @@ export const GigList = () => {
 
     const [ filteredGigs ,setFiltered] = useState([])
 
+    // reset the search bar and year dropdown menu on page load
     useEffect(() => {
       getGigs()
       setGigSearchTerms("")
       setGigYearEntries("")
     }, [])
 
-    useEffect(() => {
-      setFiltered(sortedUserGigs)
-    }, [gigs])
-
+    // filter gigs based on content in the search bar
     useEffect(() => {
         if (searchTerms !== "") {
           const subset = sortedUserGigs.filter(gig => gig.artist.toLowerCase().includes(searchTerms.toLowerCase()) || gig.locationName.toLowerCase().includes(searchTerms.toLowerCase()))
@@ -32,6 +30,7 @@ export const GigList = () => {
         }
       }, [searchTerms, gigs])
 
+      // filter gigs based on year picked in dropdown menu
       useEffect(() => {
         if (entriesYear !== "" && entriesYear !== "year") {
           const subset = sortedUserGigs.filter(gig => Date.parse(gig.date) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(gig.date) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))

@@ -13,12 +13,14 @@ export const ReceiptList = () => {
     const currentUserReceipts = receipts.filter(receipt => receipt.userId === currentGigTaxUserId)
     const sortedUserReceipts = currentUserReceipts.sort((receipt1, receipt2) => (Date.parse(receipt2.date) - Date.parse(receipt1.date)))
 
+    // reset the search bar and year dropdown menu on page load
     useEffect(() => {
         getReceipts()
         setReceiptSearchTerms("")
         setReceiptYearEntries("")
     }, [])
 
+    // filter receipts based on content in the search bar
     useEffect(() => {
         if (searchTerms !== "") {
           const subset = sortedUserReceipts.filter(receipt => receipt.businessName.toLowerCase().includes(searchTerms.toLowerCase()))
@@ -28,6 +30,7 @@ export const ReceiptList = () => {
         }
       }, [searchTerms, receipts])
 
+      // filter receipts based on year picked in dropdown menu
       useEffect(() => {
         if (entriesYear !== "" && entriesYear !== "year") {
           const subset = sortedUserReceipts.filter(receipt => Date.parse(receipt.date) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(receipt.date) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))

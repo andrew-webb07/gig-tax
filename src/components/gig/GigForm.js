@@ -36,6 +36,7 @@ export const GigForm = () => {
         setGig(newGig)
     }
 
+      // Calculating the distance in miles between the user's address and the gig's address by using each address's latitude and longitude
       const getDistance = (endAddressLat, endAddressLng) => {
         if ((startAddressLat == endAddressLat) && (startAddressLng == endAddressLng)) {
           return 0;

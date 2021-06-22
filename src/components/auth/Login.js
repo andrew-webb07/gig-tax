@@ -9,6 +9,7 @@ export const Login = props => {
     const existDialog = useRef()
     const history = useHistory()
 
+    // Checking to see if email entered matches an existing user
     const existingUserCheck = () => {
         return fetch(`http://localhost:8088/users?email=${email.current.value}`)
             .then(res => res.json())
@@ -30,6 +31,7 @@ export const Login = props => {
             })
     }
 
+    // Reset form when cancel button is clicked
     const handleCancel = () => {
         email.current.value = ""
     }

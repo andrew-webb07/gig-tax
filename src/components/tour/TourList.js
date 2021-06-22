@@ -13,12 +13,14 @@ export const TourList = () => {
     const currentUserTours = tours.filter(tour => tour.userId === currentGigTaxUserId)
     const sortedUserTours = currentUserTours.sort((tour1, tour2) => (Date.parse(tour2.dateEnd) - Date.parse(tour1.dateEnd)))
 
+    // reset the search bar and year dropdown menu on page load
     useEffect(() => {
         getTours()
         setTourSearchTerms("")
         setTourYearEntries("")
     }, [])
 
+    // filter tours based on content in the search bar
     useEffect(() => {
         if (searchTerms !== "") {
           const subset = sortedUserTours.filter(tour => tour.artist.toLowerCase().includes(searchTerms.toLowerCase()) || tour.tourDescription.toLowerCase().includes(searchTerms.toLowerCase()))
@@ -28,6 +30,7 @@ export const TourList = () => {
         }
       }, [searchTerms, tours])
 
+      // filter tours based on year picked in dropdown menu
       useEffect(() => {
         if (entriesYear !== "" && entriesYear !== "year") {
           const subset = sortedUserTours.filter(tour => Date.parse(tour.dateEnd) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(tour.dateEnd) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))

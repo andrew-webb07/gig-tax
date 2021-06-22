@@ -23,7 +23,7 @@ export const QuarterlyTotal = () => {
         getReceipts().then(getGigs).then(getTours)
     }, [])
     
-
+    // filter receipts based on the year picked in the dropdown menu
     useEffect(() => {
         if (totalsYear !== "year" && totalsYear !== "") {
           const subset = currentUserReceipts.filter(receipt => Date.parse(receipt.date) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(receipt.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
@@ -33,6 +33,7 @@ export const QuarterlyTotal = () => {
         }
       }, [totalsYear, receipts])
 
+      // filter gigs based on the year picked in the dropdown menu
       useEffect(() => {
         if (totalsYear !== "year" && totalsYear !== "") {
           const subset = currentUserGigs.filter(gig => Date.parse(gig.date) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(gig.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
@@ -42,6 +43,7 @@ export const QuarterlyTotal = () => {
         }
       }, [totalsYear, gigs])
 
+      // filter tours based on the year picked in the dropdown menu
       useEffect(() => {
         if (totalsYear !== "year" && totalsYear !== "") {
           const subset = currentUserTours.filter(tour => Date.parse(tour.dateEnd) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(tour.dateEnd) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
@@ -137,11 +139,13 @@ export const QuarterlyTotal = () => {
     let totalQuarterlyAmountMadeQuarter3 = sumOfGigsQuarter3 + sumOfToursQuarter3
     let totalQuarterlyAmountMadeQuarter4 = sumOfGigsQuarter4 + sumOfToursQuarter4
 
+    // Calculating the total miles tax deduction amount of money based on the standard mileage deduction rate per mile
     let totalMileDeductionQuarter1 = Math.floor(totalOfMilesQuarter1 * .575)
     let totalMileDeductionQuarter2 = Math.floor(totalOfMilesQuarter2 * .575)
     let totalMileDeductionQuarter3 = Math.floor(totalOfMilesQuarter3 * .575)
     let totalMileDeductionQuarter4 = Math.floor(totalOfMilesQuarter4 * .575)
 
+    // Calculating the total amount of tax money owed based on the current self-employment tax rate
     let totalTaxOwedQuarter1 = ((sumOfGigsQuarter1 + sumOfToursQuarter1 - sumOfReceiptsQuarter1 - totalMileDeductionQuarter1) * .153).toLocaleString('en-US', {style: 'currency', currency: 'USD'})
     let totalTaxOwedQuarter2 = ((sumOfGigsQuarter2 + sumOfToursQuarter2 - sumOfReceiptsQuarter2 - totalMileDeductionQuarter2) * .153).toLocaleString('en-US', {style: 'currency', currency: 'USD'})
     let totalTaxOwedQuarter3 = ((sumOfGigsQuarter3 + sumOfToursQuarter3 - sumOfReceiptsQuarter3 - totalMileDeductionQuarter3) * .153).toLocaleString('en-US', {style: 'currency', currency: 'USD'})

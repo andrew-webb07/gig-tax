@@ -20,7 +20,7 @@ export const ReceiptForm = () => {
 
     const [isLoading, setIsLoading] = useState(true);
     const {receiptId} = useParams();
-	const history = useHistory();
+	  const history = useHistory();
     const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
 
     const handleControlledInputChange = (event) => {
@@ -64,6 +64,7 @@ export const ReceiptForm = () => {
         }
     }
 
+    // If the Receipt Id was found in the URL path, get that Receipt's data and set the receipt in use state to populate the form
     useEffect(() => {
         if (receiptId) {
             getReceiptById(receiptId)
