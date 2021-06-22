@@ -11,6 +11,9 @@
     padding: 1em;
     background-color: rgb(78, 78, 78, .9);
     box-shadow: black .2em .2em .2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .gigs__header {
@@ -72,4 +75,5 @@
     margin: .5em;
     padding: .5em 1.5em;
     box-shadow: black 0 0 .2em;
+    flex-basis: 25%
   }

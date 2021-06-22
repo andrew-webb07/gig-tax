@@ -2,7 +2,6 @@ import React from "react"
 import { useHistory } from "react-router-dom"
 import "./LandingPage.css"
 import GigTax02 from "../images/GigTax02.png"
-import GigTax03 from "../images/GigTax03.png"
 
 export const LandingPage = () => {
 
