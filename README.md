@@ -48,7 +48,7 @@ The app also has login, register and logout options as well.
 
 ## DEMO Video
 
-<a href="https://www.loom.com/share/547d9764f1394fcca63b241434fd9ea3" target="_blank" alt="demo video">Demo Video</a>
+<a href="https://www.loom.com/share/547d9764f1394fcca63b241434fd9ea3" target="_blank" alt="demo video">Demo Video of Gig-Tax</a>
 
 ### Running This Application
 
