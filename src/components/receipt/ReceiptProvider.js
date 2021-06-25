@@ -10,13 +10,13 @@ export const ReceiptProvider = (props) => {
     const [ totalsYear , setReceiptYear] = useState("")
 
     const getReceipts = () => {
-        return fetch("http://localhost:8088/receipts")
+        return fetch("https://gig-tax-api.herokuapp.com/receipts")
         .then(res => res.json())
         .then(setReceipts)
     }
 
     const addReceipt = ReceiptObj => {
-        return fetch("http://localhost:8088/receipts", {
+        return fetch("https://gig-tax-api.herokuapp.com/receipts", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -27,19 +27,19 @@ export const ReceiptProvider = (props) => {
     }
 
     const deleteReceipt = receiptId => {
-        return fetch(`http://localhost:8088/receipts/${receiptId}`, {
+        return fetch(`https://gig-tax-api.herokuapp.com/receipts/${receiptId}`, {
             method: "DELETE"
         })
             .then(getReceipts)
     }
 
     const getReceiptById = receiptId => {
-        return fetch(`http://localhost:8088/receipts/${receiptId}`)
+        return fetch(`https://gig-tax-api.herokuapp.com/receipts/${receiptId}`)
         .then(res => res.json())
     }
 
     const updateReceipt = receipt => {
-        return fetch(`http://localhost:8088/receipts/${receipt.id}`, {
+        return fetch(`https://gig-tax-api.herokuapp.com/receipts/${receipt.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json"

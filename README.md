@@ -46,6 +46,10 @@ The app also has login, register and logout options as well.
 
 ![GigTaxTotals](https://user-images.githubusercontent.com/81766179/123301086-db2f3900-d4e0-11eb-9e65-9325929059a6.png)
 
+## DEMO Video
+
+<a href="https://www.loom.com/share/547d9764f1394fcca63b241434fd9ea3" target="_blank" alt="demo video">Demo Video</a>
+
 ### Running This Application
 
 #### First, a note about authentication...

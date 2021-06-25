@@ -10,13 +10,13 @@ export const TourProvider = (props) => {
     const [ totalsYear , setTourYear] = useState("")
 
     const getTours = () => {
-        return fetch("http://localhost:8088/tours")
+        return fetch("https://gig-tax-api.herokuapp.com/tours")
         .then(res => res.json())
         .then(setTours)
     }
 
     const addTour = tourObj => {
-        return fetch("http://localhost:8088/tours", {
+        return fetch("https://gig-tax-api.herokuapp.com/tours", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -27,19 +27,19 @@ export const TourProvider = (props) => {
     }
 
     const deleteTour = tourId => {
-        return fetch(`http://localhost:8088/tours/${tourId}`, {
+        return fetch(`https://gig-tax-api.herokuapp.com/tours/${tourId}`, {
             method: "DELETE"
         })
             .then(getTours)
     }
 
     const getTourById = tourId => {
-        return fetch(`http://localhost:8088/tours/${tourId}`)
+        return fetch(`https://gig-tax-api.herokuapp.com/tours/${tourId}`)
         .then(res => res.json())
     }
 
     const updateTour = tour => {
-        return fetch(`http://localhost:8088/tours/${tour.id}`, {
+        return fetch(`https://gig-tax-api.herokuapp.com/tours/${tour.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json"

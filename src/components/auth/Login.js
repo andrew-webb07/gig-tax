@@ -11,7 +11,7 @@ export const Login = props => {
 
     // Checking to see if email entered matches an existing user
     const existingUserCheck = () => {
-        return fetch(`http://localhost:8088/users?email=${email.current.value}`)
+        return fetch(`https://gig-tax-api.herokuapp.com/users?email=${email.current.value}`)
             .then(res => res.json())
             .then(user => user.length ? user[0] : false)
     }

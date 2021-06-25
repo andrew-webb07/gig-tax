@@ -10,13 +10,13 @@ export const GigProvider = (props) => {
     const [ totalsYear , setGigYear] = useState("")
 
     const getGigs = () => {
-        return fetch("http://localhost:8088/gigs")
+        return fetch("https://gig-tax-api.herokuapp.com/gigs")
         .then(res => res.json())
         .then(setGigs)
     }
 
     const addGig = gigObj => {
-        return fetch("http://localhost:8088/gigs", {
+        return fetch("https://gig-tax-api.herokuapp.com/gigs", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -27,19 +27,19 @@ export const GigProvider = (props) => {
     }
 
     const deleteGig = gigId => {
-        return fetch(`http://localhost:8088/gigs/${gigId}`, {
+        return fetch(`https://gig-tax-api.herokuapp.com/gigs/${gigId}`, {
             method: "DELETE"
         })
             .then(getGigs)
     }
 
     const getGigById = gigId => {
-        return fetch(`http://localhost:8088/gigs/${gigId}`)
+        return fetch(`https://gig-tax-api.herokuapp.com/gigs/${gigId}`)
         .then(res => res.json())
     }
 
     const updateGig = gig => {
-        return fetch(`http://localhost:8088/gigs/${gig.id}`, {
+        return fetch(`https://gig-tax-api.herokuapp.com/gigs/${gig.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json"
