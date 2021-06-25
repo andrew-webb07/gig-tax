@@ -67,7 +67,7 @@ This application uses mock authentication which is purely for demonstration purp
     <li>Access the data</li>
 </ol>
 <p>
-    <a href="https://www.github.com/andrew-webb07/gig-tax-api">Click Here</a>
+    <a href="https://www.github.com/andrew-webb07/gig-tax-api" target="_blank">Click Here</a>
 </p>
 <ol start="3">
     <li>Launch the client.</li>
