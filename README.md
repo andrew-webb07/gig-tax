@@ -46,24 +46,33 @@ The app also has login, register and logout options as well.
 
 ![GigTaxTotals](https://user-images.githubusercontent.com/81766179/123301086-db2f3900-d4e0-11eb-9e65-9325929059a6.png)
 
-### Getting Started
+### Running This Application
 
-npx create-react-app my-app
-cd my-app
-npm start
+#### First, a note about authentication...
 
-If you've previously installed create-react-app globally via npm install -g create-react-app, we recommend you uninstall the package using npm uninstall -g create-react-app or yarn global remove create-react-app to ensure that npx always uses the latest version.
+This application uses mock authentication which is purely for demonstration purposes. Therefore the login and registration code written here is completely insecure and would never be implemented in a professional application.
 
-### Creating an App
+#### Now that we've cleared that up...
 
-You’ll need to have Node 10.16.0 or later version on your local development machine (but it’s not required on the server). We recommend using the latest LTS version. You can use nvm (macOS/Linux) or nvm-windows to switch Node versions between different projects.
-
-To create a new app, you may choose one of the following methods:
-
-npx
-npx create-react-app my-app
-(npx is a package runner tool that comes with npm 5.2+ and higher, see instructions for older npm versions)
-
-npm
-npm init react-app my-app
-npm init <initializer> is available in npm 6+
+<ol>
+    <li>Clone this repository and change to the directory in the terminal.</li>
+</ol>
+<div>
+    <pre>
+    git clone git@github.com:andrew-webb07/gig-tax.git
+    <span>cd</span>gig-tax
+    </pre>
+</div>
+<ol start="2">
+    <li>Access the data</li>
+</ol>
+<p>
+    <a href="https://www.github.com/andrew-webb07/gig-tax-api">Click Here</a>
+</p>
+<ol start="3">
+    <li>Launch the client.</li>
+</ol>
+<div>
+    <pre>npm install</pre>
+    <pre>npm start</pre>
+</div>
