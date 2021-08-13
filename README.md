@@ -80,3 +80,8 @@ This application uses mock authentication which is purely for demonstration purp
     <pre>npm install</pre>
     <pre>npm start</pre>
 </div>
+
+### Deployed on heroku
+<div>
+    <a href="https://gig-tax.herokuapp.com/login" target="_blank">Gig Tax Heroku</a>
+</div>
