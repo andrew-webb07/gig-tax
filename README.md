@@ -64,7 +64,7 @@ This application uses mock authentication which is purely for demonstration purp
 <div>
     <pre>
     git clone git@github.com:andrew-webb07/gig-tax.git
-    <span>cd</span>gig-tax
+    <span>cd </span>gig-tax
     </pre>
 </div>
 <ol start="2">
