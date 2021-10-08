@@ -52,6 +52,7 @@ export const GigForm = () => {
           }
           dist = Math.acos(dist);
           dist = dist * 180/Math.PI;
+          
           // get the distance and multiply by 2 to account for drive to destination and back
           dist = dist * 60 * 1.1515 * 2;
           return dist;
@@ -203,15 +204,6 @@ export const GigForm = () => {
               value={gig.gigPay}/>
             </div>
           </fieldset>
-          {/* <fieldset>
-            <div className="form-group">
-              <label htmlFor="mileage">Miles Driven: </label>
-              <input type="text" id="mileage" name="mileage" autoFocus className="form-control"
-              placeholder="Miles Driven"
-              onChange={handleControlledInputChange}
-              value={gig.mileage}/>
-            </div>
-          </fieldset> */}
           <div className="formButtonContainer">
             <button className="btn btn-primary"
               disabled={isLoading}
