@@ -13,20 +13,20 @@ export const Register = (props) => {
     const conflictDialog = useRef()
     const history = useHistory()
 
+    // Check if email entered already matches a current user
     const existingUserCheck = () => {
         return fetch(`https://gig-tax-api.herokuapp.com/users?email=${email.current.value}`)
             .then(res => res.json())
             .then(user => !!user.length)
     }
 
+    // Take user to login page when cancel button clicked
     const handleCancel = () => {
         history.push(`/login`)
     }
 
     const handleRegister = (e) => {
         e.preventDefault()
-
-
         existingUserCheck()
             .then((userExists) => {
                 if (!userExists) {

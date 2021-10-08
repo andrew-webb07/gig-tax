@@ -9,7 +9,7 @@ export const Login = props => {
     const existDialog = useRef()
     const history = useHistory()
 
-    // Checking to see if email entered matches an existing user
+    // Checking to see if email entered matches an existing user; if there is a match, return the user
     const existingUserCheck = () => {
         return fetch(`https://gig-tax-api.herokuapp.com/users?email=${email.current.value}`)
             .then(res => res.json())
@@ -18,7 +18,6 @@ export const Login = props => {
 
     const handleLogin = (e) => {
         e.preventDefault()
-
         existingUserCheck()
             .then(exists => {
                 if (exists) {

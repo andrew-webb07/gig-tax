@@ -8,7 +8,7 @@ export const DistanceProvider = (props) => {
     const [ startAddressLat, setStartAddressLat ] = useState()
     const [ startAddressLng, setStartAddressLng ] = useState()
     
-// Function to get current user's address's latitude and longitude pulling from the Geocoder API from Google
+    // Function to get current user's address latitude and longitude pulling from the Geocoder API from Google
     const getStartAddressLatLng = () => {
         const currentGigUserAddress = localStorage.getItem("gig-tax_user_address")
         const formattedStartAddress = currentGigUserAddress.replace(", ", "+")
