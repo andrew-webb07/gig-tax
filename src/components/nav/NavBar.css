@@ -11,7 +11,8 @@
     text-align: center;
     background-color: rgb(78, 78, 78);
     box-shadow: black .2em .2em .2em;
-    border: black solid;
+    /* border: black solid; */
+    margin: .2em;
     border-radius: .54em;
 }
 
