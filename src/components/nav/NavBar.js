@@ -27,7 +27,7 @@ export const NavBar = () => {
                 <Link className="navbar__link" 
                     onClick={
                         (event) => {
-                            localStorage.removeItem("gig-tax_user")
+                            localStorage.removeItem("gig-tax_user_token")
                         }
                     }
                 >Logout</Link>
