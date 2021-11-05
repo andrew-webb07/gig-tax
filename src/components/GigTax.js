@@ -12,7 +12,7 @@ return (
         <>
         <Route
         render={() => {
-            if (localStorage.getItem("gig-tax_user")) {
+            if (localStorage.getItem("gig-tax_user_token")) {
             return (
                 <>
                 <NavBar />   
