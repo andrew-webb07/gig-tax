@@ -107,7 +107,7 @@ export const GigForm = () => {
         if (gigId) {
             getGigById(gigId)
             .then(gig => {
-                const [ address1, city, state, zipcode ] = gig.locationAddress.split(", ")
+                const [ address1, city, state, zipcode ] = gig.location_address.split(", ")
                 gig.address1 = address1
                 gig.city = city
                 gig.state = state
