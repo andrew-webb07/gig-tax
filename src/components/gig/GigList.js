@@ -8,8 +8,8 @@ export const GigList = () => {
 
     const history = useHistory()
     const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
-    const currentUserGigs = gigs.filter(gig => gig.userId === currentGigTaxUserId)
-    const sortedUserGigs = currentUserGigs.sort((gig1, gig2) => (Date.parse(gig2.date) - Date.parse(gig1.date)))
+    // const currentUserGigs = gigs.filter(gig => gig.userId === currentGigTaxUserId)
+    const sortedUserGigs = gigs.sort((gig1, gig2) => (Date.parse(gig2.date) - Date.parse(gig1.date)))
 
     const [ filteredGigs ,setFiltered] = useState([])
 
@@ -50,11 +50,11 @@ export const GigList = () => {
                         return (
                             <div className="gig" id={`gig--${gig.id}`}>
                                 <div className="gig__item">Artist: {gig.artist}</div>
-                                <div className="gig__item">Location: {gig.locationName}</div>
-                                <div className="gig__item">Address: {gig.locationAddress}</div>
-                                <div className="gig__item">Description: {gig.gigDescription}</div>
+                                <div className="gig__item">Location: {gig.location_name}</div>
+                                <div className="gig__item">Address: {gig.location_address}</div>
+                                <div className="gig__item">Description: {gig.gig_description}</div>
                                 <div className="gig__item">Date: {gig.date}</div>
-                                <div className="gig__item">Gig Pay: ${gig.gigPay}</div>
+                                <div className="gig__item">Gig Pay: ${gig.gig_pay}</div>
                                 <div className="gig__item">Gig Mileage: {gig.mileage}</div>
                                 <div className="gig__buttons">
                                     <button className="gig__button" onClick={() => {history.push(`/gig/edit/${gig.id}`)}}>Edit</button>
