@@ -75,10 +75,10 @@ export const Login = props => {
                 <form className="form--login" onSubmit={handleLogin}>
                     <h1>Gig Tax</h1>
                     <h2>Please sign in</h2>
-                    <fieldset>
+                    <fieldset className="login-email">
                         <input ref={username} type="text" id="username" className="form-control" placeholder="Username" required autoFocus />
                     </fieldset>
-                    <fieldset>
+                    <fieldset className="login-email">
                         <input ref={password} type="password" id="password" className="form-control" placeholder="Password" required />
                     </fieldset>
                     <fieldset className="login-buttons">
