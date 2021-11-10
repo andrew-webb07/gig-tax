@@ -36,6 +36,7 @@ export const Login = props => {
             .then(res => {
                 if ("valid" in res && res.valid) {
                     localStorage.setItem("gig-tax_user_token", res.token )
+                    localStorage.setItem("gig-tax_user_address", res.address)
                     history.push("/")
                 }
                 else {
