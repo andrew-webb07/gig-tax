@@ -112,6 +112,9 @@ export const GigForm = () => {
                 gig.city = city
                 gig.state = state
                 gig.zipcode = zipcode
+                gig.locationName = gig.location_name
+                gig.gigDescription = gig.gig_description
+                gig.gigPay = gig.gig_pay
                 setGig(gig)
                 setIsLoading(false)
             })

@@ -55,7 +55,6 @@ export const Register = (props) => {
                         .then(createdUser => {
                             console.log(createdUser)
                                 localStorage.setItem("gig-tax_user_token", createdUser.token);
-                                localStorage.setItem("gig-tax_user", createdUser.id)
                                 localStorage.setItem("gig-tax_user_address", createdUser.address)
                                 history.push("/")
                         })
