@@ -10,8 +10,8 @@ export const TourList = () => {
 
     const history = useHistory()
     const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
-    const currentUserTours = tours.filter(tour => tour.userId === currentGigTaxUserId)
-    const sortedUserTours = currentUserTours.sort((tour1, tour2) => (Date.parse(tour2.dateEnd) - Date.parse(tour1.dateEnd)))
+    // const currentUserTours = tours.filter(tour => tour.userId === currentGigTaxUserId)
+    const sortedUserTours = tours.sort((tour1, tour2) => (Date.parse(tour2.dateEnd) - Date.parse(tour1.dateEnd)))
 
     // reset the search bar and year dropdown menu on page load
     useEffect(() => {
@@ -49,14 +49,14 @@ export const TourList = () => {
                         return (
                             <div className="tour" id={`tour--${tour.id}`}>
                                 <div className="tour__item">Artist: {tour.artist}</div>
-                                <div className="tour__item">Description: {tour.tourDescription}</div>
-                                <div className="tour__item">Number Of Gigs: {tour.numberOfGigs}</div>
-                                <div className="tour__item">Per Diem: ${tour.perDiem}</div>
-                                <div className="tour__item">Number of Travel Days: {tour.travelDays}</div>
-                                <div className="tour__item">Travel Day Pay: ${tour.travelDayPay}</div>
-                                <div className="tour__item">Start Date: {tour.dateStart}</div>
-                                <div className="tour__item">Start End: {tour.dateEnd}</div>
-                                <div className="tour__item">Tour Gig Pay: ${tour.tourGigPay}</div>
+                                <div className="tour__item">Description: {tour.tour_description}</div>
+                                <div className="tour__item">Number Of Gigs: {tour.number_of_gigs}</div>
+                                <div className="tour__item">Per Diem: ${tour.per_diem}</div>
+                                <div className="tour__item">Number of Travel Days: {tour.travel_days}</div>
+                                <div className="tour__item">Travel Day Pay: ${tour.travel_day_pay}</div>
+                                <div className="tour__item">Start Date: {tour.date_start}</div>
+                                <div className="tour__item">Start End: {tour.date_end}</div>
+                                <div className="tour__item">Tour Gig Pay: ${tour.tour_gig_pay}</div>
                                 <div className="tour__item">Mileage: {tour.mileage}</div>
                                 <div className="tour__buttons">
                                     <button className="tour__button" onClick={() => {history.push(`/tour/edit/${tour.id}`)}}>Edit</button>

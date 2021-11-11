@@ -10,15 +10,20 @@ export const TourProvider = (props) => {
     const [ totalsYear , setTourYear] = useState("")
 
     const getTours = () => {
-        return fetch("https://gig-tax-api.herokuapp.com/tours")
+        return fetch("https://gig-tax-server.herokuapp.com/tours", {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("gig-tax_user_token")}`
+            }
+        })
         .then(res => res.json())
         .then(setTours)
     }
 
     const addTour = tourObj => {
-        return fetch("https://gig-tax-api.herokuapp.com/tours", {
+        return fetch("https://gig-tax-server.herokuapp.com/tours", {
             method: "POST",
             headers: {
+                "Authorization": `Token ${localStorage.getItem("gig-tax_user_token")}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(tourObj)
@@ -27,21 +32,29 @@ export const TourProvider = (props) => {
     }
 
     const deleteTour = tourId => {
-        return fetch(`https://gig-tax-api.herokuapp.com/tours/${tourId}`, {
-            method: "DELETE"
+        return fetch(`https://gig-tax-server.herokuapp.com/tours/${tourId}`, {
+            method: "DELETE",
+            headers: {
+                    "Authorization": `Token ${localStorage.getItem("gig-tax_user_token")}`
+                }
         })
             .then(getTours)
     }
 
     const getTourById = tourId => {
-        return fetch(`https://gig-tax-api.herokuapp.com/tours/${tourId}`)
+        return fetch(`https://gig-tax-server.herokuapp.com/tours/${tourId}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("gig-tax_user_token")}`
+            }
+        })
         .then(res => res.json())
     }
 
     const updateTour = tour => {
-        return fetch(`https://gig-tax-api.herokuapp.com/tours/${tour.id}`, {
+        return fetch(`https://gig-tax-server.herokuapp.com/tours/${tour.id}`, {
           method: "PUT",
           headers: {
+            "Authorization": `Token ${localStorage.getItem("gig-tax_user_token")}`,
             "Content-Type": "application/json"
           },
           body: JSON.stringify(tour)
