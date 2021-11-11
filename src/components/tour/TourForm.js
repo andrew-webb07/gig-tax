@@ -126,11 +126,18 @@ export const TourForm = () => {
         if (tourId) {
             getTourById(tourId)
             .then(tour => {
-              const [ address1, city, state, zipcode ] = tour.tourDepartureAddress.split(", ")
+              const [ address1, city, state, zipcode ] = tour.tour_departure_address.split(", ")
                 tour.address1 = address1
                 tour.city = city
                 tour.state = state
                 tour.zipcode = zipcode
+                tour.numberOfGigs = tour.number_of_gigs
+                tour.perDiem = tour.per_diem
+                tour.travelDayPay = tour.travel_day_pay
+                tour.tourDescription = tour.tour_description
+                tour.dateStart = tour.date_start
+                tour.dateEnd = tour.date_end
+                tour.tourGigPay = tour.tour_gig_pay
                 setTour(tour)
                 setIsLoading(false)
             })
