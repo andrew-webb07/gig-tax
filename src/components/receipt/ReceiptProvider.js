@@ -23,6 +23,7 @@ export const ReceiptProvider = (props) => {
         return fetch("https://gig-tax-server.herokuapp.com/receipts", {
             method: "POST",
             headers: {
+                "Authorization": `Token ${localStorage.getItem("gig-tax_user_token")}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(ReceiptObj)
@@ -32,7 +33,10 @@ export const ReceiptProvider = (props) => {
 
     const deleteReceipt = receiptId => {
         return fetch(`https://gig-tax-server.herokuapp.com/receipts/${receiptId}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                    "Authorization": `Token ${localStorage.getItem("gig-tax_user_token")}`
+                }
         })
             .then(getReceipts)
     }
@@ -50,6 +54,7 @@ export const ReceiptProvider = (props) => {
         return fetch(`https://gig-tax-server.herokuapp.com/receipts/${receipt.id}`, {
           method: "PUT",
           headers: {
+            "Authorization": `Token ${localStorage.getItem("gig-tax_user_token")}`,
             "Content-Type": "application/json"
           },
           body: JSON.stringify(receipt)
