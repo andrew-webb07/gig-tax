@@ -9,9 +9,9 @@ export const ReceiptList = () => {
     const [ filteredReceipts, setFiltered ] = useState([])
 
     const history = useHistory()
-    const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
-    const currentUserReceipts = receipts.filter(receipt => receipt.userId === currentGigTaxUserId)
-    const sortedUserReceipts = currentUserReceipts.sort((receipt1, receipt2) => (Date.parse(receipt2.date) - Date.parse(receipt1.date)))
+    // const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
+    // const currentUserReceipts = receipts.filter(receipt => receipt.userId === currentGigTaxUserId)
+    const sortedUserReceipts = receipts.sort((receipt1, receipt2) => (Date.parse(receipt2.date) - Date.parse(receipt1.date)))
 
     // reset the search bar and year dropdown menu on page load
     useEffect(() => {
@@ -48,7 +48,7 @@ export const ReceiptList = () => {
                     filteredReceipts.map(receipt => {
                         return (
                             <div className="receipt" id={`Receipt--${receipt.id}`}>
-                                <div className="receipt__item">Business: {receipt.businessName}</div>
+                                <div className="receipt__item">Business: {receipt.business_name}</div>
                                 <div className="receipt__item">Address: {receipt.businessAddress}</div>
                                 <div className="receipt__item">Description: {receipt.description}</div>
                                 <div className="receipt__item">Date: {receipt.date}</div>
