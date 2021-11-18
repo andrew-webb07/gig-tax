@@ -23,7 +23,7 @@ export const GigList = () => {
     // filter gigs based on content in the search bar
     useEffect(() => {
         if (searchTerms !== "") {
-          const subset = sortedUserGigs.filter(gig => gig.artist.toLowerCase().includes(searchTerms.toLowerCase()) || gig.locationName.toLowerCase().includes(searchTerms.toLowerCase()))
+          const subset = sortedUserGigs.filter(gig => gig.artist.toLowerCase().includes(searchTerms.toLowerCase()) || gig.location_name.toLowerCase().includes(searchTerms.toLowerCase()))
           setFiltered(subset)
         } else {
           setFiltered(sortedUserGigs)

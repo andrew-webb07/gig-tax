@@ -20,30 +20,30 @@ export const YearTotal = () => {
     // filter receipts based on the year picked in the dropdown menu
     useEffect(() => {
         if (totalsYear !== "year" && totalsYear !== "") {
-          const subset = currentUserReceipts.filter(receipt => Date.parse(receipt.date) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(receipt.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
+          const subset = receipts.filter(receipt => Date.parse(receipt.date) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(receipt.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
           setFilteredReceipts(subset)
         } else {
-          setFilteredReceipts(currentUserReceipts)
+          setFilteredReceipts(receipts)
         }
       }, [totalsYear, receipts])
 
       // filter gigs based on the year picked in the dropdown menu
       useEffect(() => {
         if (totalsYear !== "year" && totalsYear !== "") {
-          const subset = currentUserGigs.filter(gig => Date.parse(gig.date) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(gig.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
+          const subset = gigs.filter(gig => Date.parse(gig.date) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(gig.date) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
           setFilteredGigs(subset)
         } else {
-          setFilteredGigs(currentUserGigs)
+          setFilteredGigs(gigs)
         }
       }, [totalsYear, gigs])
 
       // filter tours based on the year picked in the dropdown menu
       useEffect(() => {
         if (totalsYear !== "year" && totalsYear !== "") {
-          const subset = currentUserTours.filter(tour => Date.parse(tour.dateEnd) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(tour.dateEnd) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
+          const subset = tours.filter(tour => Date.parse(tour.date_end) > Date.parse(`12/31/${parseInt(totalsYear) - 1}`) && Date.parse(tour.date_end) < Date.parse(`01/01/${parseInt(totalsYear) + 1}`))
           setFilteredTours(subset)
         } else {
-          setFilteredTours(currentUserTours)
+          setFilteredTours(tours)
         }
       }, [totalsYear, tours])
 
@@ -58,14 +58,14 @@ export const YearTotal = () => {
         }
 
         for (const gig of filteredGigs) {
-            sumOfGigs += gig.gigPay
+            sumOfGigs += gig.gig_pay
             totalOfMiles += gig.mileage
         }
 
         for (const tour of filteredTours) {
-            sumOfTours += tour.numberOfGigs * tour.tourGigPay
-            sumOfTours += tour.perDiem * (tour.travelDays + tour.numberOfGigs)
-            sumOfTours += tour.travelDays * tour.travelDayPay
+            sumOfTours += tour.number_of_gigs * tour.tour_gig_pay
+            sumOfTours += tour.per_diem * (tour.travel_days + tour.number_of_gigs)
+            sumOfTours += tour.travel_days * tour.travel_day_pay
             totalOfMiles += tour.mileage
         }
 
