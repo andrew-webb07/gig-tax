@@ -23,7 +23,7 @@ export const ReceiptList = () => {
     // filter receipts based on content in the search bar
     useEffect(() => {
         if (searchTerms !== "") {
-          const subset = sortedUserReceipts.filter(receipt => receipt.businessName.toLowerCase().includes(searchTerms.toLowerCase()))
+          const subset = sortedUserReceipts.filter(receipt => receipt.business_name.toLowerCase().includes(searchTerms.toLowerCase()))
           setFiltered(subset)
         } else {
           setFiltered(sortedUserReceipts)

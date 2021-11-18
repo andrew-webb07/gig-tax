@@ -11,7 +11,7 @@ export const TourList = () => {
     const history = useHistory()
     const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
     // const currentUserTours = tours.filter(tour => tour.userId === currentGigTaxUserId)
-    const sortedUserTours = tours.sort((tour1, tour2) => (Date.parse(tour2.dateEnd) - Date.parse(tour1.dateEnd)))
+    const sortedUserTours = tours.sort((tour1, tour2) => (Date.parse(tour2.date_end) - Date.parse(tour1.date_end)))
 
     // reset the search bar and year dropdown menu on page load
     useEffect(() => {
@@ -23,7 +23,7 @@ export const TourList = () => {
     // filter tours based on content in the search bar
     useEffect(() => {
         if (searchTerms !== "") {
-          const subset = sortedUserTours.filter(tour => tour.artist.toLowerCase().includes(searchTerms.toLowerCase()) || tour.tourDescription.toLowerCase().includes(searchTerms.toLowerCase()))
+          const subset = sortedUserTours.filter(tour => tour.artist.toLowerCase().includes(searchTerms.toLowerCase()) || tour.tour_description.toLowerCase().includes(searchTerms.toLowerCase()))
           setFiltered(subset)
         } else {
           setFiltered(sortedUserTours)
@@ -33,7 +33,7 @@ export const TourList = () => {
       // filter tours based on year picked in dropdown menu
       useEffect(() => {
         if (entriesYear !== "" && entriesYear !== "year") {
-          const subset = sortedUserTours.filter(tour => Date.parse(tour.dateEnd) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(tour.dateEnd) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))
+          const subset = sortedUserTours.filter(tour => Date.parse(tour.date_end) >= Date.parse(`01/01/${entriesYear}`) && Date.parse(tour.date_end) < Date.parse(`01/01/${parseInt(entriesYear) + 1}`))
           setFiltered(subset)
         } else {
           setFiltered(sortedUserTours)
