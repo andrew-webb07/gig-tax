@@ -88,7 +88,7 @@ export const Register = (props) => {
 					<input ref={firstName} type="text" name="firstName" className="form-control" placeholder="First name" requiredautoFocus />
 				</fieldset>
 				<fieldset>
-                    <label htmlFor="inputEmail"> LastName </label>
+                    <label htmlFor="inputEmail"> Last Name </label>
 					<input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
 				</fieldset>
                 <fieldset>
