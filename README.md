@@ -20,6 +20,12 @@ The app has buttons on the landing page that take the user to each of the 3 form
 
 The app also has login, register and logout options as well.
 
+### Technologies Used
+
+![HTML5](https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Git](https://img.shields.io/badge/git%20-%23F05033.svg?&style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white) ![Visual Studio Code](https://img.shields.io/badge/VSCode%20-%23007ACC.svg?&style=for-the-badge&logo=visual-studio-code&logoColor=white)
+![Python](https://img.shields.io/badge/Python%20-%23007ACC.svg?&style=for-the-badge&logo=Python&logoColor=white)
+![Django](https://img.shields.io/badge/Django%20-%23007ACC.svg?&style=for-the-badge&logo=Django&logoColor=white)
+
 ## Wireframe
 
 ![WireframeGigTax](https://user-images.githubusercontent.com/81766179/123299766-7aebc780-d4df-11eb-8872-25f03064eabb.png)
@@ -50,13 +56,11 @@ The app also has login, register and logout options as well.
 
 <a href="https://www.loom.com/share/547d9764f1394fcca63b241434fd9ea3" target="_blank" alt="demo video">Demo Video of Gig-Tax</a>
 
-### Running This Application
+## Running This Application
 
-#### First, a note about authentication...
+### Installation
 
-This application uses mock authentication which is purely for demonstration purposes. Therefore the login and registration code written here is completely insecure and would never be implemented in a professional application.
-
-#### Now that we've cleared that up...
+<div>Along with this repository, you will need to clone the Practice Plan Server repo as well which contains the data.</div>
 
 <ol>
     <li>Clone this repository and change to the directory in the terminal.</li>
@@ -68,10 +72,10 @@ This application uses mock authentication which is purely for demonstration purp
     </pre>
 </div>
 <ol start="2">
-    <li>Access the data</li>
+    <li>Access the data by following the instructions below:</li>
 </ol>
 <p>
-    <a href="https://www.github.com/andrew-webb07/gig-tax-api" target="_blank">Click Here</a>
+    <a href="https://github.com/andrew-webb07/gig-tax-server" target="_blank">Server Repo</a>
 </p>
 <ol start="3">
     <li>Launch the client.</li>
@@ -81,7 +85,18 @@ This application uses mock authentication which is purely for demonstration purp
     <pre>npm start</pre>
 </div>
 
+#### Demo User Credentials
+
+<div>Username: example_user</div>
+<div>Password: password</div>
+
 ### Deployed on heroku
 <div>
     <a href="https://gig-tax.herokuapp.com/login" target="_blank">Gig Tax Heroku</a>
 </div>
+
+#### Created by Andrew Webb
+
+<a href="https://github.com/andrew-webb07/"><img src="https://camo.githubusercontent.com/6aea43d076c7bf00489f1b347caa33fe5c4d84a8af2983804f8702632f2669ec/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6769746875622532302d2532333132313031312e7376673f267374796c653d666f722d7468652d6261646765266c6f676f3d676974687562266c6f676f436f6c6f723d7768697465" alt="Andrew Webb GitHub" data-canonical-src="https://img.shields.io/badge/github%20-%23121011.svg?&amp;style=for-the-badge&amp;logo=github&amp;logoColor=white" style="max-width: 100%;"></a>
+
+<a href="https://www.linkedin.com/in/andrew-webb07/" rel="nofollow"><img src="https://camo.githubusercontent.com/8bb7c1de40aadb0d8eede2add7716932344b30235088d239831fe0e884de8f82/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c696e6b6564696e2532302d2532333030373742352e7376673f267374796c653d666f722d7468652d6261646765266c6f676f3d6c696e6b6564696e266c6f676f436f6c6f723d7768697465" alt="Andrew Webb LinkedIn" data-canonical-src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&amp;style=for-the-badge&amp;logo=linkedin&amp;logoColor=white" style="max-width: 100%;"></a>
