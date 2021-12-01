@@ -42,16 +42,16 @@ export const GigForm = () => {
           return 0;
       }
       else {
-          const radStartAddressLat = Math.PI * startAddressLat/180;
-          const radEndAddressLat = Math.PI * endAddressLat/180;
+          const radStartAddressLat = Math.PI * startAddressLat/180; // Convert degrees to radians
+          const radEndAddressLat = Math.PI * endAddressLat/180;     // Convert degrees to radians
           const theta = startAddressLng-endAddressLng;
-          const radtheta = Math.PI * theta/180;
+          const radtheta = Math.PI * theta/180; // Convert degrees to radians
           let dist = Math.sin(radStartAddressLat) * Math.sin(radEndAddressLat) + Math.cos(radStartAddressLat) * Math.cos(radEndAddressLat) * Math.cos(radtheta);
           if (dist > 1) {
               dist = 1;
           }
-          dist = Math.acos(dist);
-          dist = dist * 180/Math.PI;
+          dist = Math.acos(dist);    // Angel calculated in radians
+          dist = dist * 180/Math.PI; // Convert radian number to degrees
           
           // get the distance and multiply by 2 to account for drive to destination and back
           dist = dist * 60 * 1.1515 * 2;
