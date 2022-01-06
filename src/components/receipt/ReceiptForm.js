@@ -69,11 +69,13 @@ export const ReceiptForm = () => {
         if (receiptId) {
             getReceiptById(receiptId)
             .then(receipt => {
-                const [ businessAddress1, businessCity, businessState, businessZipcode ] = receipt.businessAddress.split(", ")
+                const [ businessAddress1, businessCity, businessState, businessZipcode ] = receipt.business_address.split(", ")
                     receipt.businessAddress1 = businessAddress1
                     receipt.businessCity = businessCity
                     receipt.businessState  = businessState  
                     receipt.businessZipcode = businessZipcode
+                    receipt.businessName = receipt.business_name
+                    receipt.receiptNumber = receipt.receipt_number
                 setReceipt(receipt)
                 setIsLoading(false)
             })
