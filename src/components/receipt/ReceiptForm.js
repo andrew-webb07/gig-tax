@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from 'react-router-dom';
 import { ReceiptContext } from "./ReceiptProvider"
 import "./Receipt.css"
+import { CategoryContext } from "../category/CategoryProvider";
 
 export const ReceiptForm = () => {
     const { addReceipt, getReceiptById, updateReceipt } = useContext(ReceiptContext)
+    const {categories, getCategories } = useContext(CategoryContext)
 
     const [ receipt, setReceipt ] = useState({
                     businessName: "",
@@ -66,6 +68,7 @@ export const ReceiptForm = () => {
 
     // If the Receipt Id was found in the URL path, get that Receipt's data and set the receipt in use state to populate the form
     useEffect(() => {
+      getCategories()
         if (receiptId) {
             getReceiptById(receiptId)
             .then(receipt => {
