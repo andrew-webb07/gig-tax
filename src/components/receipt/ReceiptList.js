@@ -47,7 +47,9 @@ export const ReceiptList = () => {
                 {
                     filteredReceipts.map(receipt => {
                         return (
+                          <>
                             <div className="receipt" id={`Receipt--${receipt.id}`}>
+                                {receipt.category_type === null || receipt.category_type === "" ? <div className="receipt__item">Category: <i>Unspecified</i></div> : <div className="receipt__item">Category: {receipt.category_type.label}</div>}
                                 <div className="receipt__item">Business: {receipt.business_name}</div>
                                 <div className="receipt__item">Address: {receipt.business_address}</div>
                                 <div className="receipt__item">Description: {receipt.description}</div>
@@ -60,6 +62,7 @@ export const ReceiptList = () => {
                                 deleteReceipt(receipt.id)}}>Delete</button>
                                 </div>
                             </div>
+                            </>
                         )
                     })
                 }
