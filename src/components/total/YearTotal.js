@@ -48,6 +48,12 @@ export const YearTotal = () => {
       }, [totalsYear, tours])
 
     let sumOfReceipts = 0
+    let sumOfSupplyReceipts = 0
+    let sumOfRepairReceipts = 0
+    let sumOfEquipmentRentReceipts = 0
+    let sumOfOtherRentReceipts = 0
+    let sumOfOtherReceipts = 0
+
     let sumOfGigs = 0
     let totalOfMiles = 0
     let sumOfTours = 0
@@ -55,6 +61,23 @@ export const YearTotal = () => {
     
         for (const receipt of filteredReceipts) {
             sumOfReceipts += receipt.price
+            if(receipt.category_type !== null) {
+              if(receipt.category_type.label === "Supplies (gear)") {
+                sumOfSupplyReceipts += receipt.price
+              }
+              else if (receipt.category_type.label === "Repairs & Maintenance") {
+                sumOfRepairReceipts += receipt.price
+              }
+              else if (receipt.category_type.label === "Equipment Rent") {
+                sumOfEquipmentRentReceipts += receipt.price
+              }
+              else if (receipt.category_type.label === "Other Rent") {
+                sumOfOtherRentReceipts += receipt.price
+              }
+              else if (receipt.category_type.label === "Other") {
+                sumOfOtherReceipts += receipt.price
+              }
+            }
         }
 
         for (const gig of filteredGigs) {
@@ -89,7 +112,12 @@ export const YearTotal = () => {
         <div className="yearTotalBoxes">
             <div className="yearTotalBox">
                 <h2>Total of Receipts</h2>
-                <div className="yearTotalBox__item">${sumOfReceipts}</div>
+                <div className="yearTotalBox__item"><strong>Total: ${sumOfReceipts.toFixed(2)}</strong></div>
+                <div className="yearTotalBox__item">Supplies: ${sumOfSupplyReceipts.toFixed(2)}</div>
+                <div className="yearTotalBox__item">Repairs: ${sumOfRepairReceipts.toFixed(2)}</div>
+                <div className="yearTotalBox__item">Equipment Rent: ${sumOfEquipmentRentReceipts.toFixed(2)}</div>
+                <div className="yearTotalBox__item">Other Rent: ${sumOfOtherRentReceipts.toFixed(2)}</div>
+                <div className="yearTotalBox__item">Other: ${sumOfOtherReceipts.toFixed(2)}</div>
             </div>
             <div className="yearTotalBox">
                 <h2>Total Amount Made</h2>

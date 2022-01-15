@@ -22,6 +22,7 @@ export const YearDropDownTotals = () => {
         }}
         >
           <option key="year" value="year">Year</option>
+          <option key="2022" value="2022">2022</option>
           <option key="2021" value="2021">2021</option>
           <option key="2020" value="2020">2020</option>
           <option key="2019" value="2019">2019</option>
