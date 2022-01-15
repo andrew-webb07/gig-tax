@@ -81,7 +81,12 @@ export const ReceiptForm = () => {
                     receipt.businessZipcode = businessZipcode
                     receipt.businessName = receipt.business_name
                     receipt.receiptNumber = receipt.receipt_number
-                    receipt.categoryId = parseInt(receipt.category_type.id)
+                    if(receipt.category_type !== null) {
+                      receipt.categoryId = parseInt(receipt.category_type.id)
+                    } else {
+                      receipt.categoryId = ""
+                    }
+                    
                 setReceipt(receipt)
                 setIsLoading(false)
             })

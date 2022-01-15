@@ -8,7 +8,6 @@ export const QuarterlyTotal = () => {
     const { receipts, getReceipts, totalsYear } = useContext(ReceiptContext)
     const { tours, getTours } = useContext(TourContext)
     const { gigs, getGigs } = useContext(GigContext)
-    console.log(tours)
     // const currentGigTaxUserId = parseInt(localStorage.getItem("gig-tax_user"))
 
     // const currentUserReceipts = receipts.filter(receipt => receipt.userId === currentGigTaxUserId)
