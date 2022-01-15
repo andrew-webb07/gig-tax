@@ -93,8 +93,10 @@ export const ReceiptForm = () => {
     return (
         <form className="receiptForm">
           <h2 className="receiptForm__title">{receiptId ? <>Edit receipt</> : <>New receipt</>}</h2>
-          <fieldset className="">
-						<select value={receipt.categoryId} name="categoryId" id="categoryId" className="postSelectBox" onChange={handleControlledInputChange}>
+          <fieldset>
+          <div className="form-group categoryContainer">
+          <label htmlFor="category">Category:</label>
+						<select value={receipt.categoryId} name="categoryId" id="categoryId" className="categorySelectBox" onChange={handleControlledInputChange}>
 							<option style={{ fontStyle: "italic", fontWeight: "600" }}value="0">
 								Select Category{" "}
 							</option>
@@ -102,6 +104,7 @@ export const ReceiptForm = () => {
 								<option key={category.id} value={category.id}>{category.label}</option>
 							))}
 						</select>
+            </div>
 					</fieldset>
           <fieldset>
             <div className="form-group">
