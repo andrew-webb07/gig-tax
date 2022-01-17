@@ -53,7 +53,7 @@ export const GigForm = () => {
           dist = Math.acos(dist);    // Angel calculated in radians
           dist = dist * 180/Math.PI; // Convert radian number to degrees
           
-          // get the distance and multiply by 2 to account for drive to destination and back
+          // get the distance in miles and multiply by 2 to account for drive to destination and back
           dist = dist * 60 * 1.1515 * 2;
           return dist;
       }

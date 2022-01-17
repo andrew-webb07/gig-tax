@@ -112,7 +112,7 @@ export const YearTotal = () => {
         <div className="yearTotalBoxes">
             <div className="yearTotalBox">
                 <h2>Total of Receipts</h2>
-                <div className="yearTotalBox__item"><strong>Total: ${sumOfReceipts.toFixed(2)}</strong></div>
+                <h3 className="yearTotalBox__item"><strong>Total: ${sumOfReceipts.toFixed(2)}</strong></h3>
                 <div className="yearTotalBox__item">Supplies: ${sumOfSupplyReceipts.toFixed(2)}</div>
                 <div className="yearTotalBox__item">Repairs: ${sumOfRepairReceipts.toFixed(2)}</div>
                 <div className="yearTotalBox__item">Equipment Rent: ${sumOfEquipmentRentReceipts.toFixed(2)}</div>
@@ -121,22 +121,22 @@ export const YearTotal = () => {
             </div>
             <div className="yearTotalBox">
                 <h2>Total Amount Made</h2>
-                <div className="yearTotalBox__item">${totalAmountMade}</div>
+                <h3 className="yearTotalBox__item">${totalAmountMade}</h3>
                 {/* <br></br>
                 <div className="yearTotalBox__item">(Total of Gigs: ${sumOfGigs})</div>
                 <div className="yearTotalBox__item">(Total of Tours: ${sumOfTours})</div> */}
             </div>
             <div className="yearTotalBox">
                 <h2>Total Miles Driven</h2>
-                <div className="yearTotalBox__item">{totalOfMiles}</div>
+                <h3 className="yearTotalBox__item">{totalOfMiles}</h3>
             </div>
             <div className="yearTotalBox">
                 <h2>Total Mileage Tax Deduction</h2>
-                <div className="yearTotalBox__item">${totalMileDeduction}</div>
+                <h3 className="yearTotalBox__item">${totalMileDeduction}</h3>
             </div>
             <div className="yearTotalBox">
                 <h2>Total Amount of Taxes Owed</h2>
-                <div className="yearTotalBox__item">{totalYearTaxOwed}</div>
+                <h3 className="yearTotalBox__item">{totalYearTaxOwed}</h3>
             </div>
         </div>
         </>
