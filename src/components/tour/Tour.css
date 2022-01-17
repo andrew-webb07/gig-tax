@@ -3,6 +3,25 @@
     flex-direction: column;
     /* justify-content: space-between; */
     flex-basis: 31%;
+    height: 40em;
+    overflow:scroll;
+    overflow-x:hidden;
+    padding: 0em .6em 0em 0em;
+  }
+
+  .tours::-webkit-scrollbar {
+    background-color: transparent;
+    margin-top: 1em;
+  }
+
+  .tours::-webkit-scrollbar-thumb {
+    background-color: rgba(145, 145, 145, 0.9);
+    border-radius: .3em;
+  }
+
+  .tours::-webkit-scrollbar-track {
+    border-radius: .3em;
+    margin: 4em 0em 2em 0em;
   }
   
   .tour {
@@ -14,6 +33,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
   }
 
   .tours__header {
