@@ -98,7 +98,7 @@ export const YearTotal = () => {
         let totalAmountMade = sumOfTours + sumOfGigs
 
         // Calculating the total amount of tax money owed based on the current self-employment tax rate
-        let totalYearTaxOwed = ((sumOfGigs + sumOfTours - sumOfReceipts - totalMileDeduction) * .153).toLocaleString('en-US', {style: 'currency', currency: 'USD'})
+        let totalYearTaxOwed = ((sumOfGigs + sumOfTours - sumOfReceipts - totalMileDeduction) * .153).toFixed(2)
 
     useEffect(() => {
         getReceipts().then(getGigs).then(getTours)
@@ -136,7 +136,7 @@ export const YearTotal = () => {
             </div>
             <div className="yearTotalBox">
                 <h2>Total Amount of Taxes Owed</h2>
-                <h3 className="yearTotalBox__item">{totalYearTaxOwed}</h3>
+                {totalYearTaxOwed > 0 ? <h3 className="yearTotalBox__item">${totalYearTaxOwed}</h3>: <h3 className="yearTotalBox__item">$0</h3>}
             </div>
         </div>
         </>
